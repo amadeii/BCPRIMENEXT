@@ -111,7 +111,7 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "5.000+", label: "Empresas atendidas" },
+  { value: "Centenas", label: "de empresas atendidas" },
   { value: "98%", label: "Clientes satisfeitos" },
   { value: "15+", label: "Anos de experiência" },
   { value: "24h", label: "Tempo médio de resposta" },
@@ -325,7 +325,7 @@ export default function Home() {
               Pronto para transformar sua contabilidade?
             </h2>
             <p className="mb-8 text-primary-foreground/80">
-              Junte-se a mais de 5.000 empresas que já simplificaram sua gestão contábil com a BCPrimeON.
+              Junte-se a centenas de empresas que já simplificaram sua gestão contábil com a BCPrimeON.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/abrir-empresa">
