@@ -32,10 +32,12 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-1">
-              <span className="font-heading text-2xl font-extrabold text-primary">BC</span>
-              <span className="font-heading text-2xl font-extrabold">Prime</span>
-              <span className="font-heading text-2xl font-extrabold text-primary">ON</span>
+            <Link href="/" className="flex items-center">
+              <img 
+                src="https://alloydeliveryimages.s3.sa-east-1.amazonaws.com/licenciados/140/66041ffb43ada8l5fi.svg" 
+                alt="BCPrimeON" 
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="text-sm text-muted-foreground">
               Contabilidade digital que simplifica a gestão do seu negócio. Somos especialistas em transformar a burocracia em resultados.

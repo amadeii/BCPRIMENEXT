@@ -55,12 +55,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex items-center gap-1">
-            <span className="font-heading text-2xl font-extrabold text-primary">BC</span>
-            <span className="font-heading text-2xl font-extrabold">Prime</span>
-            <span className="font-heading text-2xl font-extrabold text-primary">ON</span>
-          </div>
+        <Link href="/" className="flex items-center">
+          <img 
+            src="https://alloydeliveryimages.s3.sa-east-1.amazonaws.com/licenciados/140/66041ffb43ada8l5fi.svg" 
+            alt="BCPrimeON" 
+            className="h-10 w-auto"
+          />
         </Link>
 
         <NavigationMenu className="hidden lg:flex">
