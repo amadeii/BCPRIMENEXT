@@ -19,7 +19,7 @@ const company = [
 ];
 
 const social = [
-  { name: "WhatsApp", href: "https://wa.me/5511999999999", icon: SiWhatsapp },
+  { name: "WhatsApp", href: "https://wa.me/5541985117177", icon: SiWhatsapp },
   { name: "Instagram", href: "https://instagram.com/bcprimeon", icon: SiInstagram },
   { name: "LinkedIn", href: "https://linkedin.com/company/bcprimeon", icon: SiLinkedin },
   { name: "Facebook", href: "https://facebook.com/bcprimeon", icon: SiFacebook },
@@ -93,31 +93,31 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">
-                  Av. Paulista, 1000 - Bela Vista<br />
-                  São Paulo - SP, 01310-100
+                  Av. Camilo di Lellis, nº 633<br />
+                  Salas 45 e 47 - Pinhais - PR
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 shrink-0 text-primary" />
-                <a href="tel:+551199999999" className="text-sm text-muted-foreground hover:text-primary">
-                  (11) 9999-9999
+                <a href="tel:+554134032089" className="text-sm text-muted-foreground hover:text-primary">
+                  (41) 3403-2089
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
-                <a href="mailto:contato@bcprimeon.com.br" className="text-sm text-muted-foreground hover:text-primary">
-                  contato@bcprimeon.com.br
+                <a href="mailto:sales@bcprimeon.com" className="text-sm text-muted-foreground hover:text-primary">
+                  sales@bcprimeon.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <SiWhatsapp className="h-4 w-4 shrink-0 text-primary" />
                 <a
-                  href="https://wa.me/5511999999999"
+                  href="https://wa.me/5541985117177"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
-                  WhatsApp
+                  (41) 9 8511-7177
                 </a>
               </li>
             </ul>

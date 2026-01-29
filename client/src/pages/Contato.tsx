@@ -63,19 +63,19 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Endereço",
-    content: "Av. Paulista, 1000 - Bela Vista\nSão Paulo - SP, 01310-100",
+    content: "Av. Camilo di Lellis, nº 633\nSalas 45 e 47 - Pinhais - PR",
   },
   {
     icon: Phone,
     title: "Telefone",
-    content: "(11) 9999-9999",
-    href: "tel:+5511999999999",
+    content: "(41) 3403-2089",
+    href: "tel:+554134032089",
   },
   {
     icon: Mail,
     title: "E-mail",
-    content: "contato@bcprimeon.com.br",
-    href: "mailto:contato@bcprimeon.com.br",
+    content: "sales@bcprimeon.com",
+    href: "mailto:sales@bcprimeon.com",
   },
   {
     icon: Clock,
@@ -300,7 +300,7 @@ export default function Contato() {
                     Atendimento rápido e direto com nossa equipe.
                   </p>
                   <a
-                    href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da BCPrimeON."
+                    href="https://wa.me/5541985117177?text=Olá! Gostaria de saber mais sobre os serviços da BCPrimeON."
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -345,7 +345,7 @@ export default function Contato() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="aspect-video overflow-hidden rounded-2xl bg-muted">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197542393568!2d-46.65512268502264!3d-23.563272784681424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%201000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-100!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.7!2d-49.19!3d-25.42!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDI1JzEyLjAiUyA0OcKwMTEnMjQuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
               width="100%"
               height="100%"
               style={{ border: 0 }}

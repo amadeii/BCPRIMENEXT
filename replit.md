@@ -4,6 +4,18 @@
 
 BCPrimeON is a digital accounting services website for a Brazilian accounting firm. The platform provides information about accounting services, financial consulting, tax planning, and company formation. It includes a public-facing marketing site, a blog system, lead capture forms, and an admin dashboard for content management.
 
+## Contact Information
+
+- **Telefone**: (41) 3403-2089
+- **WhatsApp**: (41) 9 8511-7177
+- **Email**: sales@bcprimeon.com
+- **Endereço**: Av. Camilo di Lellis, nº 633, Salas 45 e 47 - Pinhais - PR
+
+## Business Details
+
+- **Pricing plans**: Exclusive for Simples Nacional companies
+- **Admin credentials**: username "admin", password "bcprime2024" (localStorage-based auth)
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
