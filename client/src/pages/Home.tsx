@@ -20,6 +20,13 @@ import {
   PiggyBank,
 } from "lucide-react";
 
+import servicoBalanceOn from "@assets/servico_balance_on_1769721849189.png";
+import servicoFinanceOn from "@assets/servico_finance_on_1769721849189.png";
+import servicoTaxOn from "@assets/servico_tax_on_1769721849188.png";
+import servicoStartOn from "@assets/servico_start_on_1769721849188.png";
+import porqueBcprimeon from "@assets/porque_bcprimeon_1769721849188.png";
+import dashboardBeneficios from "@assets/dashboard_beneficios_1769721849187.png";
+
 const features = [
   {
     icon: Calculator,
@@ -51,6 +58,7 @@ const services = [
     description: "Gestão contábil completa e automatizada para sua empresa crescer sem preocupações.",
     href: "/contabilidade-digital",
     color: "bg-primary/10",
+    image: servicoBalanceOn,
   },
   {
     icon: TrendingUp,
@@ -59,6 +67,7 @@ const services = [
     description: "Terceirize sua gestão financeira e foque no que realmente importa: seu negócio.",
     href: "/consultoria-financeira",
     color: "bg-blue-500/10",
+    image: servicoFinanceOn,
   },
   {
     icon: FileText,
@@ -67,6 +76,7 @@ const services = [
     description: "Planejamento tributário inteligente para pagar menos impostos dentro da lei.",
     href: "/consultoria-tributaria",
     color: "bg-purple-500/10",
+    image: servicoTaxOn,
   },
   {
     icon: Building2,
@@ -75,6 +85,7 @@ const services = [
     description: "Abra sua empresa grátis em até 15 dias. Nós cuidamos de toda a burocracia.",
     href: "/abrir-empresa",
     color: "bg-orange-500/10",
+    image: servicoStartOn,
   },
 ];
 
@@ -91,20 +102,20 @@ const benefits = [
 
 const testimonials = [
   {
-    name: "Carlos Silva",
-    role: "CEO, TechStart",
+    name: "Carlos S.",
+    role: "Empresário",
     content: "A BCPrimeON transformou a gestão contábil da minha empresa. Economizei tempo e dinheiro!",
     rating: 5,
   },
   {
-    name: "Ana Beatriz",
+    name: "Ana B.",
     role: "Empresária",
     content: "Profissionais extremamente competentes. O atendimento é rápido e sempre resolvem minhas dúvidas.",
     rating: 5,
   },
   {
-    name: "Roberto Santos",
-    role: "Fundador, Delivery Express",
+    name: "Roberto S.",
+    role: "Empreendedor",
     content: "Desde que migrei para a BCPrimeON, não tive mais dor de cabeça com impostos e obrigações.",
     rating: 5,
   },
@@ -197,8 +208,12 @@ export default function Home() {
               <Link key={index} href={service.href}>
                 <Card className="group h-full cursor-pointer transition-all hover-elevate" data-testid={`card-service-${index}`}>
                   <CardContent className="flex h-full flex-col p-6">
-                    <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg ${service.color}`}>
-                      <service.icon className="h-6 w-6 text-primary" />
+                    <div className="mb-4 flex h-24 items-center justify-center">
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className="h-full w-auto object-contain"
+                      />
                     </div>
                     <div className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       {service.subtitle}
@@ -244,23 +259,12 @@ export default function Home() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent p-8">
-                <div className="grid h-full grid-cols-2 gap-4">
-                  {[
-                    { icon: BarChart3, label: "Relatórios" },
-                    { icon: FileCheck, label: "Obrigações" },
-                    { icon: PiggyBank, label: "Economia" },
-                    { icon: Zap, label: "Automação" },
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col items-center justify-center rounded-xl bg-background p-6 shadow-sm"
-                    >
-                      <item.icon className="mb-2 h-8 w-8 text-primary" />
-                      <span className="text-sm font-medium">{item.label}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="overflow-hidden rounded-2xl">
+                <img 
+                  src={porqueBcprimeon} 
+                  alt="Por que a BCPrimeON" 
+                  className="h-auto w-full object-contain"
+                />
               </div>
             </div>
           </div>
@@ -275,16 +279,25 @@ export default function Home() {
               Tudo o que você precisa em um só lugar
             </h2>
           </div>
-          <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-3 rounded-lg border bg-card p-4"
-              >
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
-                <span className="text-sm font-medium">{benefit}</span>
-              </div>
-            ))}
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {benefits.map((benefit, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 rounded-lg border bg-card p-4"
+                >
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
+                  <span className="text-sm font-medium">{benefit}</span>
+                </div>
+              ))}
+            </div>
+            <div className="relative">
+              <img 
+                src={dashboardBeneficios} 
+                alt="Dashboard BCPrimeON" 
+                className="w-full rounded-2xl shadow-2xl"
+              />
+            </div>
           </div>
         </div>
       </section>
