@@ -66,6 +66,10 @@ const plans = [
 
 const faq = [
   {
+    question: "Esses planos são apenas para Simples Nacional?",
+    answer: "Sim! Os planos apresentados são exclusivos para empresas optantes pelo Simples Nacional. Se sua empresa é do Lucro Presumido ou Lucro Real, entre em contato para um orçamento personalizado.",
+  },
+  {
     question: "Posso mudar de plano depois?",
     answer: "Sim! Você pode fazer upgrade ou downgrade do seu plano a qualquer momento, sem multas ou taxas adicionais.",
   },
@@ -96,6 +100,10 @@ export default function PlanosPrecos() {
             <p className="text-lg text-muted-foreground">
               Planos flexíveis que crescem junto com sua empresa. Sem fidelidade, sem surpresas.
             </p>
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              <CheckCircle2 className="h-4 w-4" />
+              Planos exclusivos para empresas do Simples Nacional
+            </div>
           </div>
         </div>
       </section>
