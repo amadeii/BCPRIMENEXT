@@ -14,6 +14,8 @@ import {
   Target,
 } from "lucide-react";
 
+import servicoFinanceOn from "@assets/servico_finance_on_1769721849189.png";
+
 const services = [
   {
     icon: Wallet,
@@ -88,10 +90,12 @@ export default function ConsultoriaFinanceira() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/20 via-blue-500/10 to-transparent p-8">
-                <div className="flex h-full items-center justify-center">
-                  <TrendingUp className="h-32 w-32 text-blue-500/50" />
-                </div>
+              <div className="overflow-hidden rounded-2xl">
+                <img 
+                  src={servicoFinanceOn} 
+                  alt="Finance-ON BPO Financeiro" 
+                  className="h-auto w-full max-w-md mx-auto object-contain"
+                />
               </div>
             </div>
           </div>

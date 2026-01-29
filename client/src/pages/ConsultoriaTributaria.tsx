@@ -14,6 +14,8 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
+import servicoTaxOn from "@assets/servico_tax_on_1769721849188.png";
+
 const services = [
   {
     icon: Calculator,
@@ -83,10 +85,12 @@ export default function ConsultoriaTributaria() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-transparent p-8">
-                <div className="flex h-full items-center justify-center">
-                  <FileText className="h-32 w-32 text-purple-500/50" />
-                </div>
+              <div className="overflow-hidden rounded-2xl">
+                <img 
+                  src={servicoTaxOn} 
+                  alt="Tax-ON Consultoria Tributária" 
+                  className="h-auto w-full max-w-md mx-auto object-contain"
+                />
               </div>
             </div>
           </div>

@@ -14,6 +14,8 @@ import {
   Award,
 } from "lucide-react";
 
+import servicoStartOn from "@assets/servico_start_on_1769721849188.png";
+
 const steps = [
   {
     number: "01",
@@ -90,6 +92,13 @@ export default function AbrirEmpresa() {
                 <CheckCircle2 className="h-4 w-4 text-primary" />
                 <span>100% online</span>
               </div>
+            </div>
+            <div className="mt-12 flex justify-center">
+              <img 
+                src={servicoStartOn} 
+                alt="Start-ON Abertura de Empresa" 
+                className="h-auto w-full max-w-lg object-contain"
+              />
             </div>
           </div>
         </div>

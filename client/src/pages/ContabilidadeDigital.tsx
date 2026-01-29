@@ -16,6 +16,8 @@ import {
   FileCheck,
 } from "lucide-react";
 
+import servicoBalanceOn from "@assets/servico_balance_on_1769721849189.png";
+
 const features = [
   {
     icon: Laptop,
@@ -94,10 +96,12 @@ export default function ContabilidadeDigital() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent p-8">
-                <div className="flex h-full items-center justify-center">
-                  <Calculator className="h-32 w-32 text-primary/50" />
-                </div>
+              <div className="overflow-hidden rounded-2xl">
+                <img 
+                  src={servicoBalanceOn} 
+                  alt="Balance-ON Contabilidade Digital" 
+                  className="h-auto w-full max-w-md mx-auto object-contain"
+                />
               </div>
             </div>
           </div>
