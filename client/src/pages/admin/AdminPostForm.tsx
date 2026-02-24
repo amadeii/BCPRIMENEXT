@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import RichTextEditor from "@/components/RichTextEditor";
 import {
   Form,
   FormControl,
@@ -34,7 +35,7 @@ const postSchema = z.object({
   title: z.string().min(5, "Título deve ter pelo menos 5 caracteres"),
   slug: z.string().min(3, "Slug deve ter pelo menos 3 caracteres"),
   excerpt: z.string().min(20, "Resumo deve ter pelo menos 20 caracteres"),
-  content: z.string().min(100, "Conteúdo deve ter pelo menos 100 caracteres"),
+  content: z.string().min(20, "Conteúdo deve ter pelo menos 20 caracteres"),
   category: z.string().min(1, "Selecione uma categoria"),
   author: z.string().min(2, "Autor é obrigatório"),
   readTime: z.string().min(1, "Tempo de leitura é obrigatório"),
@@ -276,14 +277,12 @@ export default function AdminPostForm() {
                         <FormItem>
                           <FormLabel>Conteúdo *</FormLabel>
                           <FormControl>
-                            <Textarea
-                              placeholder="Escreva o conteúdo completo do post..."
-                              className="min-h-[300px]"
-                              {...field}
-                              data-testid="input-content"
+                            <RichTextEditor
+                              value={field.value}
+                              onChange={field.onChange}
                             />
                           </FormControl>
-                          <FormDescription>Suporta Markdown</FormDescription>
+                          <FormDescription>Use a barra de ferramentas para formatar o texto e inserir imagens</FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}

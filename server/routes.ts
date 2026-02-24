@@ -2,12 +2,50 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertBlogPostSchema, insertKeywordSchema } from "@shared/schema";
+import multer from "multer";
+import path from "path";
+import { randomUUID } from "crypto";
+import fs from "fs";
+
+const uploadsDir = path.resolve("uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, uploadsDir),
+    filename: (_req, file, cb) => {
+      const ext = path.extname(file.originalname);
+      cb(null, `${randomUUID()}${ext}`);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    const allowed = /\.(jpg|jpeg|png|gif|webp|svg)$/i;
+    if (allowed.test(path.extname(file.originalname))) {
+      cb(null, true);
+    } else {
+      cb(new Error("Tipo de arquivo não permitido"));
+    }
+  },
+});
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  
+
+  app.use("/uploads", (await import("express")).default.static(uploadsDir));
+
+  app.post("/api/admin/upload", upload.single("image"), (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: "Nenhum arquivo enviado" });
+    }
+    const url = `/uploads/${req.file.filename}`;
+    res.json({ url });
+  });
+
   app.post("/api/leads", async (req, res) => {
     try {
       const parsed = insertLeadSchema.safeParse(req.body);

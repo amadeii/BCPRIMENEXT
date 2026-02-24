@@ -74,6 +74,13 @@ Preferred communication style: Simple, everyday language.
 - Recharts for charts
 - CMDK for command palette
 - Vaul for drawer components
+- TipTap rich text editor (@tiptap/react + extensions: image, link, underline, text-align, placeholder)
+
+### File Upload
+- Multer for server-side image upload handling
+- Uploads stored in `/uploads` directory, served statically at `/uploads/*`
+- Upload endpoint: `POST /api/admin/upload` (multipart form, field: "image")
+- Supported formats: jpg, jpeg, png, gif, webp, svg (max 5MB)
 
 ### Form and Validation
 - React Hook Form for form state management
