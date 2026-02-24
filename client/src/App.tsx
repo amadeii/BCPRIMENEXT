@@ -13,6 +13,7 @@ import DesenquadramentoMei from "@/pages/DesenquadramentoMei";
 import PlanosPrecos from "@/pages/PlanosPrecos";
 import SobreNos from "@/pages/SobreNos";
 import Blog from "@/pages/Blog";
+import BlogPostPage from "@/pages/BlogPost";
 import Contato from "@/pages/Contato";
 import AreaCliente from "@/pages/AreaCliente";
 import AdminLogin from "@/pages/admin/AdminLogin";
@@ -36,6 +37,7 @@ function PublicRouter() {
         <Route path="/planos-e-precos" component={PlanosPrecos} />
         <Route path="/sobre-nos" component={SobreNos} />
         <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogPostPage} />
         <Route path="/contato" component={Contato} />
         <Route path="/area-do-cliente" component={AreaCliente} />
         <Route component={NotFound} />

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useParams } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,7 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save, Loader2, Eye, LogOut } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Eye, LogOut, ImagePlus, X } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
 
 const postSchema = z.object({
@@ -36,6 +36,7 @@ const postSchema = z.object({
   slug: z.string().min(3, "Slug deve ter pelo menos 3 caracteres"),
   excerpt: z.string().min(20, "Resumo deve ter pelo menos 20 caracteres"),
   content: z.string().min(20, "Conteúdo deve ter pelo menos 20 caracteres"),
+  coverImage: z.string().optional(),
   category: z.string().min(1, "Selecione uma categoria"),
   author: z.string().min(2, "Autor é obrigatório"),
   readTime: z.string().min(1, "Tempo de leitura é obrigatório"),
@@ -61,6 +62,8 @@ export default function AdminPostForm() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const isEditing = params.id && params.id !== "new";
+  const [uploadingCover, setUploadingCover] = useState(false);
+  const coverInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const isAuth = localStorage.getItem("admin_auth");
@@ -81,6 +84,7 @@ export default function AdminPostForm() {
       slug: "",
       excerpt: "",
       content: "",
+      coverImage: "",
       category: "",
       author: "Equipe BCPrimeON",
       readTime: "5 min",
@@ -98,6 +102,7 @@ export default function AdminPostForm() {
         slug: post.slug,
         excerpt: post.excerpt,
         content: post.content,
+        coverImage: post.coverImage || "",
         category: post.category,
         author: post.author,
         readTime: post.readTime,
@@ -148,6 +153,25 @@ export default function AdminPostForm() {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
     form.setValue("slug", slug);
+  };
+
+  const handleCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingCover(true);
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+      if (!res.ok) throw new Error("Upload failed");
+      const data = await res.json();
+      form.setValue("coverImage", data.url);
+    } catch {
+      toast({ title: "Erro ao enviar imagem", variant: "destructive" });
+    } finally {
+      setUploadingCover(false);
+      e.target.value = "";
+    }
   };
 
   const handleLogout = () => {
@@ -396,6 +420,73 @@ export default function AdminPostForm() {
                         </>
                       )}
                     </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <h2 className="font-heading text-lg font-semibold">Imagem de Capa</h2>
+                  </CardHeader>
+                  <CardContent>
+                    <FormField
+                      control={form.control}
+                      name="coverImage"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <div>
+                              {field.value ? (
+                                <div className="relative">
+                                  <img
+                                    src={field.value}
+                                    alt="Capa do artigo"
+                                    className="w-full rounded-md border object-cover"
+                                    data-testid="img-cover-preview"
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="destructive"
+                                    size="icon"
+                                    className="absolute right-2 top-2 h-7 w-7"
+                                    onClick={() => form.setValue("coverImage", "")}
+                                    data-testid="button-remove-cover"
+                                  >
+                                    <X className="h-4 w-4" />
+                                  </Button>
+                                </div>
+                              ) : (
+                                <div
+                                  className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed border-muted-foreground/25 p-8 text-center transition-colors hover:border-primary/50"
+                                  onClick={() => coverInputRef.current?.click()}
+                                  data-testid="button-upload-cover"
+                                >
+                                  {uploadingCover ? (
+                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                  ) : (
+                                    <ImagePlus className="h-8 w-8 text-muted-foreground" />
+                                  )}
+                                  <span className="text-sm text-muted-foreground">
+                                    {uploadingCover ? "Enviando..." : "Clique para enviar uma imagem"}
+                                  </span>
+                                  <span className="text-xs text-muted-foreground/60">
+                                    JPG, PNG, WebP (máx. 5MB)
+                                  </span>
+                                </div>
+                              )}
+                              <input
+                                ref={coverInputRef}
+                                type="file"
+                                accept="image/*"
+                                onChange={handleCoverUpload}
+                                className="hidden"
+                                data-testid="input-cover-upload"
+                              />
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   </CardContent>
                 </Card>
 
