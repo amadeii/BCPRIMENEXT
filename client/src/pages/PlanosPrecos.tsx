@@ -32,6 +32,7 @@ const plans = [
     popular: true,
     features: [
       { name: "Tudo do plano Essencial", included: true },
+      { name: "Abertura de empresa grátis", included: true },
       { name: "Folha de pagamento (até 5)", included: true },
       { name: "Certidões negativas", included: true },
       { name: "Dashboard completo", included: true },
@@ -51,6 +52,7 @@ const plans = [
     popular: false,
     features: [
       { name: "Tudo do plano Profissional", included: true },
+      { name: "Abertura de empresa grátis", included: true },
       { name: "Folha de pagamento ilimitada", included: true },
       { name: "BPO Financeiro completo", included: true },
       { name: "Consultoria tributária", included: true },
@@ -79,7 +81,7 @@ const faq = [
   },
   {
     question: "A abertura de empresa é realmente grátis?",
-    answer: "Sim! A abertura da sua empresa é 100% gratuita em qualquer plano. Você paga apenas a mensalidade após a empresa estar funcionando.",
+    answer: "Sim! A abertura da sua empresa é 100% gratuita a partir do plano Profissional. Você paga apenas a mensalidade após a empresa estar funcionando.",
   },
   {
     question: "Quais formas de pagamento são aceitas?",

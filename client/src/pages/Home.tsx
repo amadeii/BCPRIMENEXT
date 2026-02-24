@@ -90,7 +90,7 @@ const services = [
 ];
 
 const benefits = [
-  "Abertura de empresa grátis",
+  "Abertura de empresa grátis*",
   "Emissão ilimitada de notas fiscais",
   "Dashboard completo de gestão",
   "Lembretes de obrigações fiscais",
@@ -144,7 +144,7 @@ export default function Home() {
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
               Transforme a gestão do seu negócio com a contabilidade digital que cresce junto com você.
-              Abertura de empresa grátis, suporte humanizado e tecnologia de ponta.
+              Abertura de empresa grátis a partir do plano Profissional, suporte humanizado e tecnologia de ponta.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/abrir-empresa">

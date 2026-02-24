@@ -68,7 +68,7 @@ export default function AbrirEmpresa() {
               Abra sua Empresa <span className="text-primary">Grátis</span>
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-              Nós cuidamos de toda a burocracia para você. Sem taxa de abertura, sem complicação.
+              Nós cuidamos de toda a burocracia para você. Abertura grátis a partir do plano Profissional, sem complicação.
               Sua empresa pronta para faturar em até 15 dias.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -82,7 +82,7 @@ export default function AbrirEmpresa() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-primary" />
-                <span>Taxa de abertura: R$ 0</span>
+                <span>Grátis a partir do plano Profissional</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-primary" />
