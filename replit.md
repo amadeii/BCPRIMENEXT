@@ -47,6 +47,7 @@ Preferred communication style: Simple, everyday language.
 - **Users**: Authentication for admin access
 - **Leads**: Contact form submissions with name, email, phone, company, subject, message
 - **BlogPosts**: Content with title, slug, excerpt, content, coverImage, category, SEO metadata
+- **TeamMembers**: Team profiles with name, role, bio, photo, display order
 - **SEOKeywords**: Keyword tracking for SEO purposes
 
 ### Build and Deployment

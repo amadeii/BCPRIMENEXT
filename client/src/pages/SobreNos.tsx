@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +16,7 @@ import {
   Lightbulb,
   Shield,
 } from "lucide-react";
+import type { TeamMember } from "@shared/schema";
 
 const values = [
   {
@@ -48,29 +50,6 @@ const milestones = [
   { year: "2024", event: "+500 empresas atendidas" },
 ];
 
-const team = [
-  {
-    name: "João Carlos Mendes",
-    role: "CEO & Fundador",
-    description: "Contador com mais de 20 anos de experiência em contabilidade empresarial.",
-  },
-  {
-    name: "Maria Helena Silva",
-    role: "Diretora de Operações",
-    description: "Especialista em processos contábeis e gestão de equipes.",
-  },
-  {
-    name: "Roberto Almeida",
-    role: "Diretor de Tecnologia",
-    description: "Líder da transformação digital da empresa.",
-  },
-  {
-    name: "Ana Paula Costa",
-    role: "Gerente de Sucesso do Cliente",
-    description: "Focada em garantir a melhor experiência para nossos clientes.",
-  },
-];
-
 const stats = [
   { value: "15+", label: "Anos de experiência" },
   { value: "5.000+", label: "Empresas atendidas" },
@@ -79,6 +58,10 @@ const stats = [
 ];
 
 export default function SobreNos() {
+  const { data: team } = useQuery<TeamMember[]>({
+    queryKey: ["/api/team"],
+  });
+
   return (
     <div className="flex flex-col">
       <section className="bg-gradient-to-br from-primary/5 via-background to-primary/10 py-20 lg:py-28">
@@ -211,30 +194,40 @@ export default function SobreNos() {
         </div>
       </section>
 
-      <section className="bg-card py-20 lg:py-28">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mx-auto mb-12 max-w-2xl text-center">
-            <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">Nossa Equipe</h2>
-            <p className="text-muted-foreground">
-              Profissionais experientes e apaixonados pelo que fazem.
-            </p>
+      {team && team.length > 0 && (
+        <section className="bg-card py-20 lg:py-28">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="mx-auto mb-12 max-w-2xl text-center">
+              <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">Nossa Equipe</h2>
+              <p className="text-muted-foreground">
+                Profissionais experientes e apaixonados pelo que fazem.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {team.map((member, index) => (
+                <Card key={member.id} data-testid={`card-team-${index}`}>
+                  <CardContent className="p-6 text-center">
+                    <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-primary/10">
+                      {member.photo ? (
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <Users className="h-10 w-10 text-primary/50" />
+                      )}
+                    </div>
+                    <h3 className="font-heading font-semibold">{member.name}</h3>
+                    <div className="mb-2 text-sm text-primary">{member.role}</div>
+                    <p className="text-sm text-muted-foreground">{member.bio}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {team.map((member, index) => (
-              <Card key={index} data-testid={`card-team-${index}`}>
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-                    <Users className="h-10 w-10 text-primary/50" />
-                  </div>
-                  <h3 className="font-heading font-semibold">{member.name}</h3>
-                  <div className="mb-2 text-sm text-primary">{member.role}</div>
-                  <p className="text-sm text-muted-foreground">{member.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto px-4 text-center lg:px-8">

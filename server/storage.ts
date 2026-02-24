@@ -3,10 +3,11 @@ import {
   type Lead, type InsertLead,
   type BlogPost, type InsertBlogPost,
   type Keyword, type InsertKeyword,
-  users, leads, blogPosts, seoKeywords
+  type TeamMember, type InsertTeamMember,
+  users, leads, blogPosts, seoKeywords, teamMembers
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, asc } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -28,8 +29,14 @@ export interface IStorage {
   createKeyword(keyword: InsertKeyword): Promise<Keyword>;
   deleteKeyword(id: string): Promise<void>;
   getKeywords(): Promise<Keyword[]>;
+
+  getTeamMembers(): Promise<TeamMember[]>;
+  getTeamMember(id: string): Promise<TeamMember | undefined>;
+  createTeamMember(member: InsertTeamMember): Promise<TeamMember>;
+  updateTeamMember(id: string, member: Partial<InsertTeamMember>): Promise<TeamMember | undefined>;
+  deleteTeamMember(id: string): Promise<void>;
   
-  getStats(): Promise<{ posts: number; keywords: number; leads: number }>;
+  getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -115,15 +122,40 @@ export class DatabaseStorage implements IStorage {
     return db.select().from(seoKeywords).orderBy(desc(seoKeywords.createdAt));
   }
 
-  async getStats(): Promise<{ posts: number; keywords: number; leads: number }> {
+  async getTeamMembers(): Promise<TeamMember[]> {
+    return db.select().from(teamMembers).orderBy(asc(teamMembers.order));
+  }
+
+  async getTeamMember(id: string): Promise<TeamMember | undefined> {
+    const [member] = await db.select().from(teamMembers).where(eq(teamMembers.id, id));
+    return member;
+  }
+
+  async createTeamMember(member: InsertTeamMember): Promise<TeamMember> {
+    const [newMember] = await db.insert(teamMembers).values(member).returning();
+    return newMember;
+  }
+
+  async updateTeamMember(id: string, member: Partial<InsertTeamMember>): Promise<TeamMember | undefined> {
+    const [updated] = await db.update(teamMembers).set(member).where(eq(teamMembers.id, id)).returning();
+    return updated;
+  }
+
+  async deleteTeamMember(id: string): Promise<void> {
+    await db.delete(teamMembers).where(eq(teamMembers.id, id));
+  }
+
+  async getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number }> {
     const postsResult = await db.select().from(blogPosts);
     const keywordsResult = await db.select().from(seoKeywords);
     const leadsResult = await db.select().from(leads);
+    const teamResult = await db.select().from(teamMembers);
     
     return {
       posts: postsResult.length,
       keywords: keywordsResult.length,
       leads: leadsResult.length,
+      team: teamResult.length,
     };
   }
 }

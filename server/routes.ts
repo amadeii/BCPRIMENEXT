@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertLeadSchema, insertBlogPostSchema, insertKeywordSchema } from "@shared/schema";
+import { insertLeadSchema, insertBlogPostSchema, insertKeywordSchema, insertTeamMemberSchema } from "@shared/schema";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -184,6 +184,76 @@ export async function registerRoutes(
     } catch (error) {
       console.error("Error deleting keyword:", error);
       res.status(500).json({ error: "Failed to delete keyword" });
+    }
+  });
+
+  app.get("/api/team", async (req, res) => {
+    try {
+      const members = await storage.getTeamMembers();
+      res.json(members);
+    } catch (error) {
+      console.error("Error fetching team:", error);
+      res.status(500).json({ error: "Failed to fetch team" });
+    }
+  });
+
+  app.get("/api/admin/team", async (req, res) => {
+    try {
+      const members = await storage.getTeamMembers();
+      res.json(members);
+    } catch (error) {
+      console.error("Error fetching team:", error);
+      res.status(500).json({ error: "Failed to fetch team" });
+    }
+  });
+
+  app.get("/api/admin/team/:id", async (req, res) => {
+    try {
+      const member = await storage.getTeamMember(req.params.id);
+      if (!member) {
+        return res.status(404).json({ error: "Member not found" });
+      }
+      res.json(member);
+    } catch (error) {
+      console.error("Error fetching member:", error);
+      res.status(500).json({ error: "Failed to fetch member" });
+    }
+  });
+
+  app.post("/api/admin/team", async (req, res) => {
+    try {
+      const parsed = insertTeamMemberSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ error: parsed.error.errors });
+      }
+      const member = await storage.createTeamMember(parsed.data);
+      res.status(201).json(member);
+    } catch (error) {
+      console.error("Error creating member:", error);
+      res.status(500).json({ error: "Failed to create member" });
+    }
+  });
+
+  app.patch("/api/admin/team/:id", async (req, res) => {
+    try {
+      const member = await storage.updateTeamMember(req.params.id, req.body);
+      if (!member) {
+        return res.status(404).json({ error: "Member not found" });
+      }
+      res.json(member);
+    } catch (error) {
+      console.error("Error updating member:", error);
+      res.status(500).json({ error: "Failed to update member" });
+    }
+  });
+
+  app.delete("/api/admin/team/:id", async (req, res) => {
+    try {
+      await storage.deleteTeamMember(req.params.id);
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting member:", error);
+      res.status(500).json({ error: "Failed to delete member" });
     }
   });
 

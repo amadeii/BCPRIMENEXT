@@ -23,7 +23,7 @@ export default function AdminDashboard() {
     }
   }, [setLocation]);
 
-  const { data: stats } = useQuery<{ posts: number; keywords: number; leads: number }>({
+  const { data: stats } = useQuery<{ posts: number; keywords: number; leads: number; team: number }>({
     queryKey: ["/api/admin/stats"],
   });
 
@@ -53,6 +53,13 @@ export default function AdminDashboard() {
       icon: Users,
       href: "/admin/leads",
       color: "bg-green-500/10 text-green-500",
+    },
+    {
+      title: "Equipe",
+      value: stats?.team || 0,
+      icon: Users,
+      href: "/admin/team",
+      color: "bg-orange-500/10 text-orange-500",
     },
   ];
 
@@ -91,7 +98,7 @@ export default function AdminDashboard() {
           <p className="text-muted-foreground">Gerencie o conteúdo do site BCPrimeON</p>
         </div>
 
-        <div className="mb-8 grid gap-6 md:grid-cols-3">
+        <div className="mb-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {statCards.map((stat, index) => (
             <Link key={index} href={stat.href}>
               <Card className="cursor-pointer transition-all hover-elevate" data-testid={`card-stat-${index}`}>
@@ -153,6 +160,30 @@ export default function AdminDashboard() {
               <Link href="/admin/keywords">
                 <Button variant="outline" className="w-full" data-testid="button-manage-keywords">
                   Gerenciar Palavras-chave
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <h2 className="font-heading text-xl font-semibold">Equipe</h2>
+                <Link href="/admin/team">
+                  <Button size="sm" data-testid="button-manage-team-header">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Novo Membro
+                  </Button>
+                </Link>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4 text-muted-foreground">
+                Gerencie os profissionais que aparecem na página Sobre Nós.
+              </p>
+              <Link href="/admin/team">
+                <Button variant="outline" className="w-full" data-testid="button-manage-team">
+                  Gerenciar Equipe
                 </Button>
               </Link>
             </CardContent>

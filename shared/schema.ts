@@ -63,6 +63,24 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
 
+export const teamMembers = pgTable("team_members", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  bio: text("bio").notNull(),
+  photo: text("photo"),
+  order: text("display_order").default("0"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertTeamMemberSchema = createInsertSchema(teamMembers).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertTeamMember = z.infer<typeof insertTeamMemberSchema>;
+export type TeamMember = typeof teamMembers.$inferSelect;
+
 export const seoKeywords = pgTable("seo_keywords", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   keyword: text("keyword").notNull().unique(),

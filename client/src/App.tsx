@@ -21,6 +21,7 @@ import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminPosts from "@/pages/admin/AdminPosts";
 import AdminPostForm from "@/pages/admin/AdminPostForm";
 import AdminKeywords from "@/pages/admin/AdminKeywords";
+import AdminTeam from "@/pages/admin/AdminTeam";
 import AdminLeads from "@/pages/admin/AdminLeads";
 import NotFound from "@/pages/not-found";
 
@@ -56,6 +57,7 @@ function AdminRouter() {
       <Route path="/admin/posts/:id" component={AdminPostForm} />
       <Route path="/admin/keywords" component={AdminKeywords} />
       <Route path="/admin/keywords/new" component={AdminKeywords} />
+      <Route path="/admin/team" component={AdminTeam} />
       <Route path="/admin/leads" component={AdminLeads} />
       <Route component={NotFound} />
     </Switch>
