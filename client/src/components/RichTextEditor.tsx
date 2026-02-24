@@ -5,7 +5,7 @@ import Link from "@tiptap/extension-link";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import Placeholder from "@tiptap/extension-placeholder";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Bold,
@@ -39,6 +39,7 @@ interface RichTextEditorProps {
 export default function RichTextEditor({ value, onChange }: RichTextEditorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  const prevValueRef = useRef(value);
 
   const editor = useEditor({
     extensions: [
@@ -51,11 +52,20 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Placeholder.configure({ placeholder: "Escreva o conteúdo do post..." }),
     ],
-    content: value,
+    content: value || "",
     onUpdate: ({ editor }) => {
-      onChange(editor.getHTML());
+      const html = editor.getHTML();
+      prevValueRef.current = html;
+      onChange(html);
     },
   });
+
+  useEffect(() => {
+    if (editor && value !== prevValueRef.current) {
+      prevValueRef.current = value;
+      editor.commands.setContent(value || "");
+    }
+  }, [editor, value]);
 
   const handleImageUpload = useCallback(async (file: File) => {
     if (!editor) return;

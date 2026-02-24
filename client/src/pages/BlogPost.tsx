@@ -1,9 +1,28 @@
+import { useMemo } from "react";
 import { Link, useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import type { BlogPost as BlogPostType } from "@shared/schema";
+
+function convertPlainTextToHtml(text: string): string {
+  if (text.trim().startsWith("<")) return text;
+
+  return text
+    .split("\n")
+    .map((line) => {
+      const trimmed = line.trim();
+      if (!trimmed) return "";
+      if (trimmed.startsWith("### ")) return `<h3>${trimmed.slice(4)}</h3>`;
+      if (trimmed.startsWith("## ")) return `<h2>${trimmed.slice(3)}</h2>`;
+      if (trimmed.startsWith("# ")) return `<h1>${trimmed.slice(2)}</h1>`;
+      if (trimmed.startsWith("- ")) return `<li>${trimmed.slice(2)}</li>`;
+      const formatted = trimmed.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      return `<p>${formatted}</p>`;
+    })
+    .join("\n");
+}
 
 export default function BlogPost() {
   const params = useParams<{ slug: string }>();
@@ -19,6 +38,11 @@ export default function BlogPost() {
       </div>
     );
   }
+
+  const renderedContent = useMemo(() => {
+    if (!post) return "";
+    return convertPlainTextToHtml(post.content);
+  }, [post]);
 
   if (error || !post) {
     return (
@@ -84,7 +108,7 @@ export default function BlogPost() {
 
           <div
             className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:font-bold prose-a:text-primary prose-img:rounded-md"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: renderedContent }}
             data-testid="text-post-content"
           />
 
