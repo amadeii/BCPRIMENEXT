@@ -43,9 +43,9 @@ const milestones = [
   { year: "2009", event: "Fundação da BCPrime" },
   { year: "2015", event: "Expansão para todo o Brasil" },
   { year: "2018", event: "Lançamento da plataforma digital" },
-  { year: "2020", event: "Marco de 3.000 clientes ativos" },
+  { year: "2020", event: "Marco de 300 clientes ativos" },
   { year: "2023", event: "Lançamento do BCPrimeON" },
-  { year: "2024", event: "+5.000 empresas atendidas" },
+  { year: "2024", event: "+500 empresas atendidas" },
 ];
 
 const team = [
