@@ -105,7 +105,7 @@ const testimonials = [
   {
     name: "Carlos S.",
     role: "Empresário",
-    content: "A BCPrimeON transformou a gestão contábil da minha empresa. Economizei tempo e dinheiro!",
+    content: "A BCPrimeNEXT transformou a gestão contábil da minha empresa. Economizei tempo e dinheiro!",
     rating: 5,
   },
   {
@@ -117,7 +117,7 @@ const testimonials = [
   {
     name: "Roberto S.",
     role: "Empreendedor",
-    content: "Desde que migrei para a BCPrimeON, não tive mais dor de cabeça com impostos e obrigações.",
+    content: "Desde que migrei para a BCPrimeNEXT, não tive mais dor de cabeça com impostos e obrigações.",
     rating: 5,
   },
 ];
@@ -230,7 +230,7 @@ export default function Home() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge variant="secondary" className="mb-4">Por que a BCPrimeON?</Badge>
+              <Badge variant="secondary" className="mb-4">Por que a BCPrimeNEXT?</Badge>
               <h2 className="mb-6 font-heading text-3xl font-bold md:text-4xl">
                 Tecnologia e expertise a serviço do seu negócio
               </h2>
@@ -256,7 +256,7 @@ export default function Home() {
               <div className="overflow-hidden rounded-2xl">
                 <img 
                   src={porqueBcprimeon} 
-                  alt="Por que a BCPrimeON" 
+                  alt="Por que a BCPrimeNEXT" 
                   className="h-auto w-full object-contain"
                 />
               </div>
@@ -288,7 +288,7 @@ export default function Home() {
             <div className="relative">
               <img 
                 src={dashboardBeneficios} 
-                alt="Dashboard BCPrimeON" 
+                alt="Dashboard BCPrimeNEXT" 
                 className="w-full rounded-2xl shadow-2xl"
               />
             </div>
@@ -332,7 +332,7 @@ export default function Home() {
               Pronto para transformar sua contabilidade?
             </h2>
             <p className="mb-8 text-primary-foreground/80">
-              Junte-se a centenas de empresas que já simplificaram sua gestão contábil com a BCPrimeON.
+              Junte-se a centenas de empresas que já simplificaram sua gestão contábil com a BCPrimeNEXT.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/abrir-empresa">

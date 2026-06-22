@@ -131,7 +131,7 @@ export default function Contato() {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">Contato</Badge>
             <h1 className="mb-6 font-heading text-4xl font-extrabold tracking-tight md:text-5xl">
-              Fale com a <span className="text-primary">BCPrimeON</span>
+              Fale com a <span className="text-primary">BCPrimeNEXT</span>
             </h1>
             <p className="text-lg text-muted-foreground">
               Estamos prontos para ajudar você e sua empresa. Entre em contato por um de nossos canais.
@@ -300,7 +300,7 @@ export default function Contato() {
                     Atendimento rápido e direto com nossa equipe.
                   </p>
                   <a
-                    href="https://wa.me/5541985117177?text=Olá! Gostaria de saber mais sobre os serviços da BCPrimeON."
+                    href="https://wa.me/5541985117177?text=Olá! Gostaria de saber mais sobre os serviços da BCPrimeNEXT."
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -352,7 +352,7 @@ export default function Contato() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localização BCPrimeON"
+              title="Localização BCPrimeNEXT"
             />
           </div>
         </div>

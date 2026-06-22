@@ -86,7 +86,7 @@ export default function AdminPostForm() {
       content: "",
       coverImage: "",
       category: "",
-      author: "Equipe BCPrimeON",
+      author: "Equipe BCPrimeNEXT",
       readTime: "5 min",
       metaTitle: "",
       metaDescription: "",

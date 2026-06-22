@@ -229,7 +229,7 @@ export default function SobreNos() {
             Quer fazer parte dessa história?
           </h2>
           <p className="mb-8 text-primary-foreground/80">
-            Junte-se a milhares de empresas que confiam na BCPrimeON.
+            Junte-se a centenas de empresas que confiam na BCPrimeNEXT.
           </p>
           <Link href="/contato">
             <Button size="lg" variant="secondary" data-testid="button-sobre-cta">

@@ -172,7 +172,7 @@ export default function AbrirEmpresa() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">
-              Por que abrir com a BCPrimeON?
+              Por que abrir com a BCPrimeNEXT?
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
