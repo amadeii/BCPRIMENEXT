@@ -62,7 +62,7 @@ export default function ConsultoriaTributaria() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge variant="secondary" className="mb-4">Tax-ON</Badge>
+              <Badge variant="secondary" className="mb-4">Tax-NEXT</Badge>
               <h1 className="mb-6 font-heading text-4xl font-extrabold tracking-tight md:text-5xl">
                 Consultoria <span className="text-primary">Tributária</span> Estratégica
               </h1>
@@ -88,7 +88,7 @@ export default function ConsultoriaTributaria() {
               <div className="overflow-hidden rounded-2xl">
                 <img 
                   src={servicoTaxOn} 
-                  alt="Tax-ON Consultoria Tributária" 
+                  alt="Tax-NEXT Consultoria Tributária" 
                   className="h-auto w-full max-w-md mx-auto object-contain"
                 />
               </div>

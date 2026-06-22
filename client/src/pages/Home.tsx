@@ -53,7 +53,7 @@ const features = [
 const services = [
   {
     icon: Calculator,
-    title: "Balance-ON",
+    title: "Balance-NEXT",
     subtitle: "Contabilidade Digital",
     description: "Gestão contábil completa e automatizada para sua empresa crescer sem preocupações.",
     href: "/contabilidade-digital",
@@ -62,7 +62,7 @@ const services = [
   },
   {
     icon: TrendingUp,
-    title: "Finance-ON",
+    title: "Finance-NEXT",
     subtitle: "BPO Financeiro",
     description: "Terceirize sua gestão financeira e foque no que realmente importa: seu negócio.",
     href: "/consultoria-financeira",
@@ -71,7 +71,7 @@ const services = [
   },
   {
     icon: FileText,
-    title: "Tax-ON",
+    title: "Tax-NEXT",
     subtitle: "Consultoria Tributária",
     description: "Planejamento tributário inteligente para pagar menos impostos dentro da lei.",
     href: "/consultoria-tributaria",
@@ -80,7 +80,7 @@ const services = [
   },
   {
     icon: Building2,
-    title: "Start-ON",
+    title: "Start-NEXT",
     subtitle: "Abertura de Empresa",
     description: "Abra sua empresa grátis em até 15 dias. Nós cuidamos de toda a burocracia.",
     href: "/abrir-empresa",

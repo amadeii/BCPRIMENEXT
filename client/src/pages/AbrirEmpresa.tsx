@@ -63,7 +63,7 @@ export default function AbrirEmpresa() {
       <section className="bg-gradient-to-br from-orange-500/5 via-background to-orange-500/10 py-20 lg:py-28">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <Badge variant="secondary" className="mb-4">Start-ON</Badge>
+            <Badge variant="secondary" className="mb-4">Start-NEXT</Badge>
             <h1 className="mb-6 font-heading text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl">
               Abra sua Empresa <span className="text-primary">Grátis</span>
             </h1>
@@ -96,7 +96,7 @@ export default function AbrirEmpresa() {
             <div className="mt-12 flex justify-center">
               <img 
                 src={servicoStartOn} 
-                alt="Start-ON Abertura de Empresa" 
+                alt="Start-NEXT Abertura de Empresa" 
                 className="h-auto w-full max-w-lg object-contain"
               />
             </div>

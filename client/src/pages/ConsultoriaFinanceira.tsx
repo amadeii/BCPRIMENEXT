@@ -67,7 +67,7 @@ export default function ConsultoriaFinanceira() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge variant="secondary" className="mb-4">Finance-ON</Badge>
+              <Badge variant="secondary" className="mb-4">Finance-NEXT</Badge>
               <h1 className="mb-6 font-heading text-4xl font-extrabold tracking-tight md:text-5xl">
                 <span className="text-primary">BPO Financeiro</span> para sua Empresa
               </h1>
@@ -93,7 +93,7 @@ export default function ConsultoriaFinanceira() {
               <div className="overflow-hidden rounded-2xl">
                 <img 
                   src={servicoFinanceOn} 
-                  alt="Finance-ON BPO Financeiro" 
+                  alt="Finance-NEXT BPO Financeiro" 
                   className="h-auto w-full max-w-md mx-auto object-contain"
                 />
               </div>
@@ -106,7 +106,7 @@ export default function ConsultoriaFinanceira() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">
-              Serviços do Finance-ON
+              Serviços do Finance-NEXT
             </h2>
             <p className="text-muted-foreground">
               Uma gestão financeira completa e profissional para sua empresa.
@@ -150,7 +150,7 @@ export default function ConsultoriaFinanceira() {
                 operacionais e ganham mais eficiência nas operações do dia a dia.
               </p>
               <p className="text-muted-foreground">
-                Com o Finance-ON, você tem acesso a uma equipe de especialistas sem os custos
+                Com o Finance-NEXT, você tem acesso a uma equipe de especialistas sem os custos
                 de contratação CLT, treinamento e tecnologia.
               </p>
             </div>

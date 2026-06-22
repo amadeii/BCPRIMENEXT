@@ -143,7 +143,7 @@ A BCPrimeON realiza todo o processo de migração para você!`,
 - Quando falta expertise financeira
 - Quando o crescimento exige mais controle
 
-O Finance-ON da BCPrimeON oferece BPO Financeiro completo para sua empresa!`,
+O Finance-NEXT da BCPrimeON oferece BPO Financeiro completo para sua empresa!`,
           category: "Finanças",
           author: "Roberto Almeida",
           readTime: "7 min",

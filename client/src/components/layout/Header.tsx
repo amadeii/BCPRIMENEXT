@@ -18,13 +18,13 @@ const services = [
   {
     title: "Contabilidade Digital",
     href: "/contabilidade-digital",
-    description: "Balance-ON: Gestão contábil completa e 100% online",
+    description: "Balance-NEXT: Gestão contábil completa e 100% online",
     icon: Calculator,
   },
   {
     title: "Consultoria Financeira",
     href: "/consultoria-financeira",
-    description: "Finance-ON: BPO Financeiro para sua empresa",
+    description: "Finance-NEXT: BPO Financeiro para sua empresa",
     icon: TrendingUp,
   },
   {

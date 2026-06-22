@@ -73,7 +73,7 @@ export default function ContabilidadeDigital() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge variant="secondary" className="mb-4">Balance-ON</Badge>
+              <Badge variant="secondary" className="mb-4">Balance-NEXT</Badge>
               <h1 className="mb-6 font-heading text-4xl font-extrabold tracking-tight md:text-5xl">
                 Contabilidade <span className="text-primary">Digital</span> Completa
               </h1>
@@ -99,7 +99,7 @@ export default function ContabilidadeDigital() {
               <div className="overflow-hidden rounded-2xl">
                 <img 
                   src={servicoBalanceOn} 
-                  alt="Balance-ON Contabilidade Digital" 
+                  alt="Balance-NEXT Contabilidade Digital" 
                   className="h-auto w-full max-w-md mx-auto object-contain"
                 />
               </div>
@@ -139,7 +139,7 @@ export default function ContabilidadeDigital() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <h2 className="mb-6 font-heading text-3xl font-bold md:text-4xl">
-                O que está incluso no Balance-ON
+                O que está incluso no Balance-NEXT
               </h2>
               <p className="mb-8 text-muted-foreground">
                 Tenha acesso a todos os serviços contábeis que sua empresa precisa em uma única mensalidade.
