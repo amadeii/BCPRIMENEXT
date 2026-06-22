@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ServicePricingCard } from "@/components/ServicePricingCard";
 import {
   Calculator,
   CheckCircle2,
@@ -153,32 +154,9 @@ export default function ContabilidadeDigital() {
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl border bg-background p-8">
-              <div className="mb-6 text-center">
-                <div className="mb-2 text-sm text-muted-foreground">A partir de</div>
-                <div className="font-heading text-5xl font-bold text-primary">R$ 99</div>
-                <div className="text-muted-foreground">/mês</div>
-              </div>
-              <ul className="mb-8 space-y-3">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Sem taxa de abertura
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Sem fidelidade
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Suporte ilimitado
-                </li>
-              </ul>
-              <Link href="/planos-e-precos">
-                <Button className="w-full" size="lg" data-testid="button-ver-planos">
-                  Ver Todos os Planos
-                </Button>
-              </Link>
-            </div>
+            <ServicePricingCard
+              highlights={["Sem taxa de abertura", "Sem fidelidade", "Suporte via WhatsApp"]}
+            />
           </div>
         </div>
       </section>

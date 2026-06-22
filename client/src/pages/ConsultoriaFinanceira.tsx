@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ServicePricingCard } from "@/components/ServicePricingCard";
 import {
   TrendingUp,
   CheckCircle2,
@@ -149,10 +150,14 @@ export default function ConsultoriaFinanceira() {
                 Empresas que terceirizam a gestão financeira economizam em média 40% em custos
                 operacionais e ganham mais eficiência nas operações do dia a dia.
               </p>
-              <p className="text-muted-foreground">
+              <p className="mb-8 text-muted-foreground">
                 Com o Finance-NEXT, você tem acesso a uma equipe de especialistas sem os custos
                 de contratação CLT, treinamento e tecnologia.
               </p>
+              <ServicePricingCard
+                highlights={["BPO Financeiro completo", "Sem contratação CLT", "Especialistas dedicados"]}
+                ctaLabel="Ver Planos com Finance-NEXT"
+              />
             </div>
           </div>
         </div>

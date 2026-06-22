@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ServicePricingCard } from "@/components/ServicePricingCard";
 import {
   FileText,
   CheckCircle2,
@@ -146,33 +147,39 @@ export default function ConsultoriaTributaria() {
                 * Valores médios baseados em análises de clientes. Economia real varia conforme atividade e faturamento.
               </p>
             </div>
-            <div className="rounded-2xl border bg-background p-8">
-              <h3 className="mb-6 text-center font-heading text-2xl font-bold">
-                Diagnóstico Tributário Gratuito
-              </h3>
-              <ul className="mb-8 space-y-3">
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Análise do regime tributário atual
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Simulação de economia
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Identificação de oportunidades
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Plano de ação personalizado
-                </li>
-              </ul>
-              <Link href="/contato">
-                <Button className="w-full" size="lg" data-testid="button-diagnostico">
-                  Solicitar Diagnóstico Gratuito
-                </Button>
-              </Link>
+            <div className="space-y-6">
+              <div className="rounded-2xl border bg-background p-8">
+                <h3 className="mb-6 text-center font-heading text-2xl font-bold">
+                  Diagnóstico Tributário Gratuito
+                </h3>
+                <ul className="mb-8 space-y-3">
+                  <li className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    Análise do regime tributário atual
+                  </li>
+                  <li className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    Simulação de economia
+                  </li>
+                  <li className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    Identificação de oportunidades
+                  </li>
+                  <li className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    Plano de ação personalizado
+                  </li>
+                </ul>
+                <Link href="/contato">
+                  <Button className="w-full" size="lg" data-testid="button-diagnostico">
+                    Solicitar Diagnóstico Gratuito
+                  </Button>
+                </Link>
+              </div>
+              <ServicePricingCard
+                highlights={["Tax-NEXT incluso", "Planejamento tributário", "Suporte especializado"]}
+                ctaLabel="Ver Planos com Tax-NEXT"
+              />
             </div>
           </div>
         </div>

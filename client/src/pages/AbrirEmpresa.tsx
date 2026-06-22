@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ServicePricingCard } from "@/components/ServicePricingCard";
 import {
   Building2,
   CheckCircle2,
@@ -208,6 +209,39 @@ export default function AbrirEmpresa() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-card py-20 lg:py-28">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div>
+              <h2 className="mb-4 font-heading text-3xl font-bold md:text-4xl">
+                Abertura grátis inclusa nos planos
+              </h2>
+              <p className="mb-6 text-muted-foreground">
+                A abertura da sua empresa é gratuita a partir do plano Central Starter (assinatura mínima de 12 meses). Você já sai com contabilidade, ERP e consultoria incluídos.
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                  Abertura de empresa sem custo adicional
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                  Contabilidade digital já ativada no primeiro mês
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                  Suporte humanizado via WhatsApp
+                </li>
+              </ul>
+            </div>
+            <ServicePricingCard
+              highlights={["Abertura grátis inclusa", "Contabilidade desde o 1º mês", "Suporte via WhatsApp"]}
+              ctaLabel="Ver Planos com Abertura Grátis"
+            />
           </div>
         </div>
       </section>
