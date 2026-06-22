@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { siteStats as stats } from "@/lib/site-stats";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -50,13 +51,6 @@ const milestones = [
   { year: "2024", event: "+500 empresas atendidas" },
 ];
 
-const stats = [
-  { value: "15+", label: "Anos de experiência" },
-  { value: "5.000+", label: "Empresas atendidas" },
-  { value: "50+", label: "Profissionais" },
-  { value: "98%", label: "Satisfação" },
-];
-
 export default function SobreNos() {
   const { data: team } = useQuery<TeamMember[]>({
     queryKey: ["/api/team"],
@@ -100,7 +94,7 @@ export default function SobreNos() {
 
       <section className="border-y bg-card py-8">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="mx-auto grid max-w-md grid-cols-2 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="font-heading text-3xl font-bold text-primary md:text-4xl">

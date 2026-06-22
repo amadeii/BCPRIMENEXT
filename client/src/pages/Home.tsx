@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { siteStats as stats } from "@/lib/site-stats";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -121,13 +122,6 @@ const testimonials = [
   },
 ];
 
-const stats = [
-  { value: "200+", label: "Clientes ativos" },
-  { value: "98%", label: "Clientes satisfeitos" },
-  { value: "15+", label: "Anos de experiência" },
-  { value: "24h", label: "Tempo médio de resposta" },
-];
-
 export default function Home() {
   return (
     <div className="flex flex-col">
@@ -179,7 +173,7 @@ export default function Home() {
 
       <section className="border-y bg-card py-8">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="mx-auto grid max-w-md grid-cols-2 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="font-heading text-3xl font-bold text-primary md:text-4xl">
