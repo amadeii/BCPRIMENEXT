@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "EjfYOvzWv5a3AexWnuky5"
+uri = "file://bcprimeon-backup.tar.gz"
+type = "unspecified"
+title = "BCPrimeON - Backup do Site"
