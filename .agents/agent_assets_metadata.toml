@@ -12,3 +12,9 @@ id = "u8Eir3RBE3iQkYGzBcvdK"
 uri = "file://bcprimenext-backup.tar.gz"
 type = "unspecified"
 title = "BCPrimeNEXT — Backup completo do projeto"
+
+[[outputs]]
+id = "WDe2XUTSPbi7RCN3cYsSH"
+uri = "file://BCPrimeNEXT-Documentacao-Tecnica.md"
+type = "text"
+title = "BCPrimeNEXT — Documentação Técnica (Funcionalidades + Servidor)"
