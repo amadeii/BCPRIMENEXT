@@ -6,3 +6,9 @@ id = "EjfYOvzWv5a3AexWnuky5"
 uri = "file://bcprimeon-backup.tar.gz"
 type = "unspecified"
 title = "BCPrimeON - Backup do Site"
+
+[[outputs]]
+id = "u8Eir3RBE3iQkYGzBcvdK"
+uri = "file://bcprimenext-backup.tar.gz"
+type = "unspecified"
+title = "BCPrimeNEXT — Backup completo do projeto"
