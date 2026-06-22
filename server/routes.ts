@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertLeadSchema, insertBlogPostSchema, insertKeywordSchema, insertTeamMemberSchema } from "@shared/schema";
+import { insertLeadSchema, insertBlogPostSchema, insertKeywordSchema, insertTeamMemberSchema, insertPlanSchema } from "@shared/schema";
 import multer from "multer";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -264,6 +264,76 @@ export async function registerRoutes(
     } catch (error) {
       console.error("Error fetching leads:", error);
       res.status(500).json({ error: "Failed to fetch leads" });
+    }
+  });
+
+  app.get("/api/plans", async (req, res) => {
+    try {
+      const plansList = await storage.getActivePlans();
+      res.json(plansList);
+    } catch (error) {
+      console.error("Error fetching plans:", error);
+      res.status(500).json({ error: "Failed to fetch plans" });
+    }
+  });
+
+  app.get("/api/admin/plans", async (req, res) => {
+    try {
+      const plansList = await storage.getPlans();
+      res.json(plansList);
+    } catch (error) {
+      console.error("Error fetching plans:", error);
+      res.status(500).json({ error: "Failed to fetch plans" });
+    }
+  });
+
+  app.get("/api/admin/plans/:id", async (req, res) => {
+    try {
+      const plan = await storage.getPlan(req.params.id);
+      if (!plan) {
+        return res.status(404).json({ error: "Plan not found" });
+      }
+      res.json(plan);
+    } catch (error) {
+      console.error("Error fetching plan:", error);
+      res.status(500).json({ error: "Failed to fetch plan" });
+    }
+  });
+
+  app.post("/api/admin/plans", async (req, res) => {
+    try {
+      const parsed = insertPlanSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ error: parsed.error.errors });
+      }
+      const plan = await storage.createPlan(parsed.data);
+      res.status(201).json(plan);
+    } catch (error) {
+      console.error("Error creating plan:", error);
+      res.status(500).json({ error: "Failed to create plan" });
+    }
+  });
+
+  app.patch("/api/admin/plans/:id", async (req, res) => {
+    try {
+      const plan = await storage.updatePlan(req.params.id, req.body);
+      if (!plan) {
+        return res.status(404).json({ error: "Plan not found" });
+      }
+      res.json(plan);
+    } catch (error) {
+      console.error("Error updating plan:", error);
+      res.status(500).json({ error: "Failed to update plan" });
+    }
+  });
+
+  app.delete("/api/admin/plans/:id", async (req, res) => {
+    try {
+      await storage.deletePlan(req.params.id);
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting plan:", error);
+      res.status(500).json({ error: "Failed to delete plan" });
     }
   });
 

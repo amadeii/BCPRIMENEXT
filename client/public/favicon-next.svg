@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Ícone BcprimeNEXT</title>
+  <defs>
+    <linearGradient id="toggleGradientIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#99D369"/>
+      <stop offset="100%" stop-color="#5C962C"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="23" width="180" height="64" rx="32" fill="url(#toggleGradientIcon)"/>
+  <text x="32" y="65" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="26" fill="#FFFFFF">NEXT</text>
+  <circle cx="152" cy="55" r="23" fill="#FFFFFF"/>
+  <path d="M 144 44 L 160 55 L 144 66" fill="none" stroke="#5C962C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

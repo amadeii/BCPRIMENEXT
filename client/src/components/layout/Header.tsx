@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
+import logoBcprimeNext from "@/assets/logo-bcprimenext.svg";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -57,8 +58,8 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
         <Link href="/" className="flex items-center">
           <img 
-            src="https://alloydeliveryimages.s3.sa-east-1.amazonaws.com/licenciados/140/66041ffb43ada8l5fi.svg" 
-            alt="BCPrimeON" 
+            src={logoBcprimeNext}
+            alt="BcprimeNEXT" 
             className="h-10 w-auto"
           />
         </Link>

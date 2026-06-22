@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { blogPosts, seoKeywords } from "@shared/schema";
+import { blogPosts, seoKeywords, plans } from "@shared/schema";
 
 export async function seedDatabase() {
   try {
@@ -218,6 +218,100 @@ Consulte os especialistas da BCPrimeON para uma análise personalizada!`,
       ]);
       
       console.log("SEO keywords seeded successfully!");
+    }
+
+    const existingPlans = await db.select().from(plans);
+    if (existingPlans.length === 0) {
+      console.log("Seeding plans...");
+      await db.insert(plans).values([
+        {
+          name: "Central Starter",
+          slug: "central-starter",
+          description: "Ideal para MEI",
+          price: "195",
+          billing: "/mês",
+          popular: false,
+          features: JSON.stringify([
+            { name: "Abertura de empresa grátis (com 12 meses de assinatura)", included: true },
+            { name: "Contabilidade completa", included: true },
+            { name: "ERP básico (1 usuário, estoque, financeiro)", included: true },
+            { name: "Emissão de até 500 notas fiscais/mês", included: true },
+            { name: "Consultoria fiscal com Maestro IA 24/7", included: true },
+            { name: "Suporte via WhatsApp", included: true },
+            { name: "Relatórios gerenciais básicos", included: true },
+          ]),
+          ctaLabel: "Começar Agora",
+          ctaHref: "/contato",
+          displayOrder: "1",
+          active: true,
+        },
+        {
+          name: "Central Growth",
+          slug: "central-growth",
+          description: "Para empresas do Simples Nacional em crescimento",
+          price: "395",
+          billing: "/mês",
+          popular: true,
+          features: JSON.stringify([
+            { name: "Tudo do Central Starter", included: true },
+            { name: "ERP completo (5 usuários, estoque avançado, financeiro, vendas)", included: true },
+            { name: "Emissão de até 1.000 notas fiscais/mês", included: true },
+            { name: "Consultoria de crescimento mensal", included: true },
+            { name: "Consultoria de transição de regime tributário", included: true },
+            { name: "Suporte prioritário via WhatsApp", included: true },
+            { name: "Relatórios gerenciais avançados", included: true },
+            { name: "Maestro IA com análise de cenários", included: true },
+          ]),
+          ctaLabel: "Escolher Plano",
+          ctaHref: "/contato",
+          displayOrder: "2",
+          active: true,
+        },
+        {
+          name: "Central Scale",
+          slug: "central-scale",
+          description: "Para empresas do Lucro Presumido",
+          price: "795",
+          billing: "/mês",
+          popular: false,
+          features: JSON.stringify([
+            { name: "Tudo do Central Growth", included: true },
+            { name: "ERP enterprise (10 usuários, estoque enterprise, financeiro avançado)", included: true },
+            { name: "Emissão de até 5.000 notas fiscais/mês", included: true },
+            { name: "Consultoria estratégica semanal", included: true },
+            { name: "Consultoria de transição para Lucro Real", included: true },
+            { name: "Suporte dedicado (telefone + WhatsApp)", included: true },
+            { name: "BI e análise avançada", included: true },
+            { name: "Maestro IA com previsões e automações", included: true },
+          ]),
+          ctaLabel: "Falar com Consultor",
+          ctaHref: "/contato",
+          displayOrder: "3",
+          active: true,
+        },
+        {
+          name: "Central Enterprise",
+          slug: "central-enterprise",
+          description: "Para empresas do Lucro Real",
+          price: "Sob consulta",
+          billing: "",
+          popular: false,
+          features: JSON.stringify([
+            { name: "Tudo do Central Scale", included: true },
+            { name: "ERP completo ilimitado", included: true },
+            { name: "Consultoria estratégica dedicada", included: true },
+            { name: "Integração com sistemas externos", included: true },
+            { name: "BI customizado", included: true },
+            { name: "Maestro IA com automações avançadas", included: true },
+            { name: "Suporte 24/7", included: true },
+          ]),
+          ctaLabel: "Solicitar Proposta",
+          ctaHref: "/contato",
+          displayOrder: "4",
+          active: true,
+        },
+      ]);
+      console.log("Plans seeded successfully!");
     }
 
     console.log("Database seed completed!");

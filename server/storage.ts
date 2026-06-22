@@ -4,7 +4,8 @@ import {
   type BlogPost, type InsertBlogPost,
   type Keyword, type InsertKeyword,
   type TeamMember, type InsertTeamMember,
-  users, leads, blogPosts, seoKeywords, teamMembers
+  type Plan, type InsertPlan,
+  users, leads, blogPosts, seoKeywords, teamMembers, plans
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc } from "drizzle-orm";
@@ -35,8 +36,15 @@ export interface IStorage {
   createTeamMember(member: InsertTeamMember): Promise<TeamMember>;
   updateTeamMember(id: string, member: Partial<InsertTeamMember>): Promise<TeamMember | undefined>;
   deleteTeamMember(id: string): Promise<void>;
+
+  getPlans(): Promise<Plan[]>;
+  getActivePlans(): Promise<Plan[]>;
+  getPlan(id: string): Promise<Plan | undefined>;
+  createPlan(plan: InsertPlan): Promise<Plan>;
+  updatePlan(id: string, plan: Partial<InsertPlan>): Promise<Plan | undefined>;
+  deletePlan(id: string): Promise<void>;
   
-  getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number }>;
+  getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number; plans: number }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -145,17 +153,46 @@ export class DatabaseStorage implements IStorage {
     await db.delete(teamMembers).where(eq(teamMembers.id, id));
   }
 
-  async getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number }> {
+  async getPlans(): Promise<Plan[]> {
+    return db.select().from(plans).orderBy(asc(plans.displayOrder));
+  }
+
+  async getActivePlans(): Promise<Plan[]> {
+    return db.select().from(plans).where(eq(plans.active, true)).orderBy(asc(plans.displayOrder));
+  }
+
+  async getPlan(id: string): Promise<Plan | undefined> {
+    const [plan] = await db.select().from(plans).where(eq(plans.id, id));
+    return plan;
+  }
+
+  async createPlan(plan: InsertPlan): Promise<Plan> {
+    const [newPlan] = await db.insert(plans).values(plan).returning();
+    return newPlan;
+  }
+
+  async updatePlan(id: string, plan: Partial<InsertPlan>): Promise<Plan | undefined> {
+    const [updated] = await db.update(plans).set(plan).where(eq(plans.id, id)).returning();
+    return updated;
+  }
+
+  async deletePlan(id: string): Promise<void> {
+    await db.delete(plans).where(eq(plans.id, id));
+  }
+
+  async getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number; plans: number }> {
     const postsResult = await db.select().from(blogPosts);
     const keywordsResult = await db.select().from(seoKeywords);
     const leadsResult = await db.select().from(leads);
     const teamResult = await db.select().from(teamMembers);
+    const plansResult = await db.select().from(plans);
     
     return {
       posts: postsResult.length,
       keywords: keywordsResult.length,
       leads: leadsResult.length,
       team: teamResult.length,
+      plans: plansResult.length,
     };
   }
 }

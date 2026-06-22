@@ -122,7 +122,7 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "Centenas", label: "de empresas atendidas" },
+  { value: "200+", label: "Clientes ativos" },
   { value: "98%", label: "Clientes satisfeitos" },
   { value: "15+", label: "Anos de experiência" },
   { value: "24h", label: "Tempo médio de resposta" },
@@ -138,13 +138,13 @@ export default function Home() {
               Contabilidade 100% Digital
             </Badge>
             <h1 className="mb-6 font-heading text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl">
-              Sua contabilidade{" "}
-              <span className="text-primary">simples, digital</span> e sempre{" "}
+              Sua Central de Gestão Empresarial —{" "}
+              <span className="text-primary">contabilidade, ERP</span> e consultoria sempre{" "}
               <span className="text-primary">ON</span>
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              Transforme a gestão do seu negócio com a contabilidade digital que cresce junto com você.
-              Abertura de empresa grátis a partir do plano Profissional, suporte humanizado e tecnologia de ponta.
+              Transforme a gestão do seu negócio com a BcprimeNEXT: contabilidade digital, ERP integrado e consultoria especializada que crescem junto com você.
+              Abertura de empresa grátis a partir do plano Central Starter, suporte humanizado e tecnologia de ponta.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/abrir-empresa">

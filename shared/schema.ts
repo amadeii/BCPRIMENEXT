@@ -81,6 +81,28 @@ export const insertTeamMemberSchema = createInsertSchema(teamMembers).omit({
 export type InsertTeamMember = z.infer<typeof insertTeamMemberSchema>;
 export type TeamMember = typeof teamMembers.$inferSelect;
 
+export const plans = pgTable("plans", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  description: text("description").notNull(),
+  price: text("price").notNull(),
+  billing: text("billing").default("/mês"),
+  popular: boolean("popular").default(false).notNull(),
+  features: text("features").notNull(),
+  ctaLabel: text("cta_label").notNull(),
+  ctaHref: text("cta_href").notNull(),
+  displayOrder: text("display_order").default("0"),
+  active: boolean("active").default(true).notNull(),
+});
+
+export const insertPlanSchema = createInsertSchema(plans).omit({
+  id: true,
+});
+
+export type InsertPlan = z.infer<typeof insertPlanSchema>;
+export type Plan = typeof plans.$inferSelect;
+
 export const seoKeywords = pgTable("seo_keywords", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   keyword: text("keyword").notNull().unique(),

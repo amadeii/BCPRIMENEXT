@@ -23,6 +23,8 @@ import AdminPostForm from "@/pages/admin/AdminPostForm";
 import AdminKeywords from "@/pages/admin/AdminKeywords";
 import AdminTeam from "@/pages/admin/AdminTeam";
 import AdminLeads from "@/pages/admin/AdminLeads";
+import AdminPlans from "@/pages/admin/AdminPlans";
+import AdminPlanForm from "@/pages/admin/AdminPlanForm";
 import NotFound from "@/pages/not-found";
 
 function PublicRouter() {
@@ -59,6 +61,9 @@ function AdminRouter() {
       <Route path="/admin/keywords/new" component={AdminKeywords} />
       <Route path="/admin/team" component={AdminTeam} />
       <Route path="/admin/leads" component={AdminLeads} />
+      <Route path="/admin/plans" component={AdminPlans} />
+      <Route path="/admin/plans/new" component={AdminPlanForm} />
+      <Route path="/admin/plans/:id" component={AdminPlanForm} />
       <Route component={NotFound} />
     </Switch>
   );

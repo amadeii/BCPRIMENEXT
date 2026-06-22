@@ -1,0 +1,101 @@
+Contexto: este projeto é o site da BCPrimeON, contabilidade digital. Vamos evoluir a marca para BcprimeNEXT (a Central de Gestão Empresarial: contabilidade + ERP + consultoria) e melhorar o gerenciamento de planos. Siga os padrões de código já usados no projeto (schema.ts com Drizzle + zod, storage.ts implementando IStorage, routes.ts com rotas REST /api/admin/*, páginas admin em client/src/pages/admin seguindo o padrão de AdminPosts.tsx/AdminPostForm.tsx, TanStack Query + apiRequest do lib/queryClient).
+
+## 1. Identidade visual (BcprimeNEXT)
+
+Mantenha a paleta verde e a tipografia atuais (Montserrat nos títulos, Roboto no corpo, já configuradas no tailwind.config.ts e index.css) — não recriar do zero. Mude apenas:
+
+1. Troque o logo no Header.tsx e no Footer.tsx. Hoje o Header usa uma imagem externa (`src="https://alloydeliveryimages.s3.sa-east-1.amazonaws.com/licenciados/140/66041ffb43ada8l5fi.svg"`). Crie um arquivo `client/src/assets/logo-bcprimenext.svg` com este conteúdo e use-o no lugar da imagem externa:
+
+<svg viewBox="0 0 420 110" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Logo BcprimeNEXT</title>
+  <defs>
+    <linearGradient id="toggleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#99D369"/>
+      <stop offset="100%" stop-color="#5C962C"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="68" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="56" fill="#0A1628">BCPrime</text>
+  <rect x="222" y="22" width="190" height="64" rx="32" fill="url(#toggleGradient)"/>
+  <text x="244" y="64" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="26" fill="#FFFFFF">NEXT</text>
+  <circle cx="364" cy="54" r="23" fill="#FFFFFF"/>
+  <path d="M 356 43 L 372 54 L 356 65" fill="none" stroke="#5C962C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+2. Crie também `client/public/favicon-next.svg` com este ícone (mesmo conceito, só o toggle) e troque as referências de favicon (favicon.ico, apple-touch-icon, android-chrome-*) para usar este novo ícone como base ao regenerar os tamanhos:
+
+<svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Ícone BcprimeNEXT</title>
+  <defs>
+    <linearGradient id="toggleGradientIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#99D369"/>
+      <stop offset="100%" stop-color="#5C962C"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="23" width="180" height="64" rx="32" fill="url(#toggleGradientIcon)"/>
+  <text x="32" y="65" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="26" fill="#FFFFFF">NEXT</text>
+  <circle cx="152" cy="55" r="23" fill="#FFFFFF"/>
+  <path d="M 144 44 L 160 55 L 144 66" fill="none" stroke="#5C962C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+3. Troque toda ocorrência de "BCPrimeON" por "BcprimeNEXT" nos metadados: `<title>`, `meta description`, `og:title`, `og:description` (estão centralizados onde o projeto define os tags de cada página/SEO).
+
+4. Mantenha os nomes dos módulos como estão: Balance-ON, Finance-ON, Tax-ON e Start-ON — não renomear, eles já têm reconhecimento e SEO. Esses módulos passam a ser apresentados como parte da "Central BcprimeNEXT".
+
+5. Corrija a prova social na Home (`client/src/pages/Home.tsx`): o array `stats` hoje mistura números diferentes ("Centenas de empresas atendidas" no código, e uma imagem antiga não usada dizia "5.000+"). Troque para:
+   - "200+" / "Clientes ativos"
+   - "98%" / "Clientes satisfeitos"
+   - "15+" / "Anos de experiência"
+   - "24h" / "Tempo médio de resposta"
+
+6. No Hero da Home, ajuste o texto para refletir a Central de Gestão, por exemplo: troque "Sua contabilidade simples, digital e sempre ON" por algo como "Sua Central de Gestão Empresarial — contabilidade, ERP e consultoria sempre ON" (mantendo a palavra "ON" como elo com a marca anterior).
+
+## 2. Planos: usar a estrutura do Plano de Negócio (Central Starter/Growth/Scale/Enterprise)
+
+Substitua os 3 planos atuais (Essencial R$99 / Profissional R$199 / Empresarial R$399) pelos 4 planos abaixo, definidos no Plano de Negócio Definitivo:
+
+- **Central Starter** — R$ 195/mês — "Ideal para MEI"
+  Features: Abertura de empresa grátis (com 12 meses de assinatura); Contabilidade completa; ERP básico (1 usuário, estoque, financeiro); Emissão de até 500 notas fiscais/mês; Consultoria fiscal com Maestro IA 24/7; Suporte via WhatsApp; Relatórios gerenciais básicos.
+
+- **Central Growth** — R$ 395/mês — "Para empresas do Simples Nacional em crescimento" (marcar como `popular`)
+  Features: Tudo do Central Starter; ERP completo (5 usuários, estoque avançado, financeiro, vendas); Emissão de até 1.000 notas fiscais/mês; Consultoria de crescimento mensal; Consultoria de transição de regime tributário; Suporte prioritário via WhatsApp; Relatórios gerenciais avançados; Maestro IA com análise de cenários.
+
+- **Central Scale** — R$ 795/mês — "Para empresas do Lucro Presumido"
+  Features: Tudo do Central Growth; ERP enterprise (10 usuários, estoque enterprise, financeiro avançado); Emissão de até 5.000 notas fiscais/mês; Consultoria estratégica semanal; Consultoria de transição para Lucro Real; Suporte dedicado (telefone + WhatsApp); BI e análise avançada; Maestro IA com previsões e automações.
+
+- **Central Enterprise** — "Sob consulta" — "Para empresas do Lucro Real"
+  Features: Tudo do Central Scale; ERP completo ilimitado; Consultoria estratégica dedicada; Integração com sistemas externos; BI customizado; Maestro IA com automações avançadas; Suporte 24/7.
+
+Mantenha a seção de FAQ existente na página de planos, mas remova ou ajuste a frase "Os planos apresentados são exclusivos para empresas optantes pelo Simples Nacional" já que agora há um plano para Lucro Presumido (Scale) e um para Lucro Real (Enterprise sob consulta).
+
+## 3. Painel de gerenciamento de planos (para vocês ajustarem sem precisar tocar no código)
+
+Hoje os planos estão hardcoded como um array dentro de `client/src/pages/PlanosPrecos.tsx`. Construa um CRUD completo, no mesmo padrão usado para `blogPosts` e `teamMembers`:
+
+a) **Schema** (`shared/schema.ts`): criar uma tabela `plans` com colunas: id (varchar, pk, default gen_random_uuid()), name (text), slug (text, unique), description (text), price (text — para suportar "195" e também "Sob consulta"), billing (text, ex: "/mês"), popular (boolean, default false), features (text — salvar como JSON stringificado de `{ name: string; included: boolean }[]`), ctaLabel (text), ctaHref (text), displayOrder (integer ou text, default "0"), active (boolean, default true), createdAt/updatedAt (timestamp). Gerar `insertPlanSchema` com createInsertSchema (omitindo id/createdAt/updatedAt) e exportar os tipos `Plan`/`InsertPlan`, seguindo exatamente o padrão de `teamMembers`/`insertTeamMemberSchema` já existente no arquivo.
+
+b) **Storage** (`server/storage.ts`): adicionar ao `IStorage` e à implementação: `getPlans()` (todos, ordenados por displayOrder), `getActivePlans()` (apenas active=true, para a página pública), `getPlan(id)`, `createPlan(plan)`, `updatePlan(id, plan)`, `deletePlan(id)`. Incluir `plans` na contagem retornada por `getStats()`.
+
+c) **Rotas** (`server/routes.ts`):
+   - `GET /api/plans` → público, retorna `storage.getActivePlans()`, usado pela página `/planos-e-precos`.
+   - `GET /api/admin/plans` → todos os planos (inclusive inativos), para a listagem no admin.
+   - `GET /api/admin/plans/:id` → um plano.
+   - `POST /api/admin/plans` → cria, validando com `insertPlanSchema.safeParse`.
+   - `PATCH /api/admin/plans/:id` → atualiza.
+   - `DELETE /api/admin/plans/:id` → remove.
+   Seguir exatamente o padrão de erro/validação já usado nas rotas de `/api/admin/team`.
+
+d) **Admin UI**: criar `client/src/pages/admin/AdminPlans.tsx` (listagem em tabela, com nome, preço, status ativo/inativo, botões de editar/excluir — mesmo padrão visual de `AdminPosts.tsx`, incluindo o `AlertDialog` de confirmação de exclusão) e `client/src/pages/admin/AdminPlanForm.tsx` (formulário de criar/editar com campos para nome, slug, descrição, preço, billing, popular (switch), active (switch), CTA label/href, e uma lista editável de features onde cada item tem um texto e um toggle "incluído" — permitir adicionar/remover linhas de feature dinamicamente). Registrar as rotas `/admin/plans` e `/admin/plans/novo` e `/admin/plans/:id/editar` em `App.tsx`, e adicionar um card "Planos" no `AdminDashboard.tsx` (mesmo padrão dos cards de Posts/Keywords/Leads/Equipe), usando o ícone `Tag` ou `DollarSign` do lucide-react.
+
+e) **Página pública**: refatorar `client/src/pages/PlanosPrecos.tsx` para buscar os planos via `useQuery<Plan[]>({ queryKey: ["/api/plans"] })` em vez do array hardcoded hoje existente, ordenando por displayOrder, fazendo `JSON.parse` do campo `features`, e mantendo o layout de cards atual (incluindo o destaque visual quando `popular === true`).
+
+f) **Seed**: atualizar `server/seed.ts` para, se a tabela `plans` estiver vazia, inserir os 4 planos da seção 2 acima (Central Starter, Growth, Scale, Enterprise) já com `displayOrder` 1-4 e `popular: true` no Growth.
+
+g) Depois de criar o schema, rodar `npm run db:push` para aplicar a migração no banco antes de testar.
+
+## Checklist final
+- [ ] Logo e favicon trocados, sem mais referência à imagem externa do S3
+- [ ] Meta tags e textos da Home atualizados para BcprimeNEXT
+- [ ] Stats da Home corrigidos (200+ clientes ativos / 15+ anos)
+- [ ] Página /planos-e-precos mostrando os 4 planos novos, vindos da API (não mais hardcoded)
+- [ ] CRUD de planos funcionando em /admin/plans (criar, editar, excluir, ativar/desativar)
+- [ ] npm run db:push executado sem erro

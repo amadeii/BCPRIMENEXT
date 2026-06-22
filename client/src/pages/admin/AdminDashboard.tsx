@@ -11,6 +11,7 @@ import {
   Plus,
   LogOut,
   Eye,
+  CreditCard,
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -23,7 +24,7 @@ export default function AdminDashboard() {
     }
   }, [setLocation]);
 
-  const { data: stats } = useQuery<{ posts: number; keywords: number; leads: number; team: number }>({
+  const { data: stats } = useQuery<{ posts: number; keywords: number; leads: number; team: number; plans: number }>({
     queryKey: ["/api/admin/stats"],
   });
 
@@ -60,6 +61,13 @@ export default function AdminDashboard() {
       icon: Users,
       href: "/admin/team",
       color: "bg-orange-500/10 text-orange-500",
+    },
+    {
+      title: "Planos",
+      value: stats?.plans || 0,
+      icon: CreditCard,
+      href: "/admin/plans",
+      color: "bg-teal-500/10 text-teal-500",
     },
   ];
 
@@ -184,6 +192,30 @@ export default function AdminDashboard() {
               <Link href="/admin/team">
                 <Button variant="outline" className="w-full" data-testid="button-manage-team">
                   Gerenciar Equipe
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <h2 className="font-heading text-xl font-semibold">Planos e Preços</h2>
+                <Link href="/admin/plans/new">
+                  <Button size="sm" data-testid="button-new-plan">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Novo Plano
+                  </Button>
+                </Link>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4 text-muted-foreground">
+                Gerencie os planos exibidos na página pública de preços.
+              </p>
+              <Link href="/admin/plans">
+                <Button variant="outline" className="w-full" data-testid="button-manage-plans">
+                  Gerenciar Planos
                 </Button>
               </Link>
             </CardContent>

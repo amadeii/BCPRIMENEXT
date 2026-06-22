@@ -1,75 +1,20 @@
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, ArrowRight, X } from "lucide-react";
+import { CheckCircle2, ArrowRight, X, Loader2 } from "lucide-react";
+import type { Plan } from "@shared/schema";
 
-const plans = [
-  {
-    name: "Essencial",
-    description: "Ideal para MEI e empresas iniciantes",
-    price: "99",
-    billing: "/mês",
-    popular: false,
-    features: [
-      { name: "Escrituração contábil", included: true },
-      { name: "Apuração de impostos", included: true },
-      { name: "Emissão de guias DAS", included: true },
-      { name: "Suporte via WhatsApp", included: true },
-      { name: "Dashboard básico", included: true },
-      { name: "Folha de pagamento", included: false },
-      { name: "BPO Financeiro", included: false },
-      { name: "Consultoria tributária", included: false },
-    ],
-    cta: "Começar Agora",
-    href: "/contato",
-  },
-  {
-    name: "Profissional",
-    description: "Para empresas em crescimento",
-    price: "199",
-    billing: "/mês",
-    popular: true,
-    features: [
-      { name: "Tudo do plano Essencial", included: true },
-      { name: "Abertura de empresa grátis", included: true },
-      { name: "Folha de pagamento (até 5)", included: true },
-      { name: "Certidões negativas", included: true },
-      { name: "Dashboard completo", included: true },
-      { name: "Relatórios gerenciais", included: true },
-      { name: "Suporte prioritário", included: true },
-      { name: "BPO Financeiro básico", included: false },
-      { name: "Consultoria tributária", included: false },
-    ],
-    cta: "Escolher Plano",
-    href: "/contato",
-  },
-  {
-    name: "Empresarial",
-    description: "Solução completa para sua empresa",
-    price: "399",
-    billing: "/mês",
-    popular: false,
-    features: [
-      { name: "Tudo do plano Profissional", included: true },
-      { name: "Abertura de empresa grátis", included: true },
-      { name: "Folha de pagamento ilimitada", included: true },
-      { name: "BPO Financeiro completo", included: true },
-      { name: "Consultoria tributária", included: true },
-      { name: "Planejamento tributário anual", included: true },
-      { name: "Gestor de conta dedicado", included: true },
-      { name: "Atendimento telefônico", included: true },
-      { name: "Treinamentos exclusivos", included: true },
-    ],
-    cta: "Falar com Consultor",
-    href: "/contato",
-  },
-];
+interface Feature {
+  name: string;
+  included: boolean;
+}
 
 const faq = [
   {
-    question: "Esses planos são apenas para Simples Nacional?",
-    answer: "Sim! Os planos apresentados são exclusivos para empresas optantes pelo Simples Nacional. Se sua empresa é do Lucro Presumido ou Lucro Real, entre em contato para um orçamento personalizado.",
+    question: "O que é a Central BcprimeNEXT?",
+    answer: "A Central BcprimeNEXT é nossa plataforma completa de gestão empresarial que une contabilidade digital, ERP integrado e consultoria especializada em um único lugar.",
   },
   {
     question: "Posso mudar de plano depois?",
@@ -81,15 +26,23 @@ const faq = [
   },
   {
     question: "A abertura de empresa é realmente grátis?",
-    answer: "Sim! A abertura da sua empresa é 100% gratuita a partir do plano Profissional. Você paga apenas a mensalidade após a empresa estar funcionando.",
+    answer: "Sim! A abertura da sua empresa é 100% gratuita no plano Central Starter com 12 meses de assinatura, e em todos os planos superiores. Você paga apenas a mensalidade após a empresa estar funcionando.",
   },
   {
     question: "Quais formas de pagamento são aceitas?",
     answer: "Aceitamos boleto bancário, cartão de crédito e PIX. Você escolhe a melhor opção para o seu negócio.",
   },
+  {
+    question: "O que é o Maestro IA?",
+    answer: "Maestro IA é nossa consultoria fiscal inteligente disponível 24/7, que responde dúvidas tributárias, analisa cenários e auxilia na tomada de decisões do seu negócio.",
+  },
 ];
 
 export default function PlanosPrecos() {
+  const { data: plans, isLoading } = useQuery<Plan[]>({
+    queryKey: ["/api/plans"],
+  });
+
   return (
     <div className="flex flex-col">
       <section className="bg-gradient-to-br from-primary/5 via-background to-primary/10 py-20 lg:py-28">
@@ -104,7 +57,7 @@ export default function PlanosPrecos() {
             </p>
             <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
               <CheckCircle2 className="h-4 w-4" />
-              Planos exclusivos para empresas do Simples Nacional
+              Central BcprimeNEXT — contabilidade, ERP e consultoria em um só lugar
             </div>
           </div>
         </div>
@@ -112,54 +65,76 @@ export default function PlanosPrecos() {
 
       <section className="py-20 lg:py-28">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-3">
-            {plans.map((plan, index) => (
-              <Card
-                key={index}
-                className={`relative flex flex-col ${plan.popular ? "border-primary ring-2 ring-primary" : ""}`}
-                data-testid={`card-plan-${index}`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge>Mais Popular</Badge>
-                  </div>
-                )}
-                <CardHeader className="pb-0">
-                  <div className="mb-2 font-heading text-xl font-bold">{plan.name}</div>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
-                </CardHeader>
-                <CardContent className="flex flex-1 flex-col pt-6">
-                  <div className="mb-6">
-                    <span className="font-heading text-4xl font-bold">R$ {plan.price}</span>
-                    <span className="text-muted-foreground">{plan.billing}</span>
-                  </div>
-                  <ul className="mb-8 flex-1 space-y-3">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-2">
-                        {feature.included ? (
-                          <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+          {isLoading ? (
+            <div className="flex items-center justify-center py-20">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : plans && plans.length > 0 ? (
+            <div className={`grid gap-8 ${plans.length === 4 ? "lg:grid-cols-4" : plans.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+              {[...plans].sort((a, b) => Number(a.displayOrder) - Number(b.displayOrder)).map((plan, index) => {
+                let features: Feature[] = [];
+                try { features = JSON.parse(plan.features); } catch {}
+                const isFreePrice = plan.price === "Sob consulta";
+
+                return (
+                  <Card
+                    key={plan.id}
+                    className={`relative flex flex-col ${plan.popular ? "border-primary ring-2 ring-primary" : ""}`}
+                    data-testid={`card-plan-${index}`}
+                  >
+                    {plan.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <Badge>Mais Popular</Badge>
+                      </div>
+                    )}
+                    <CardHeader className="pb-0">
+                      <div className="mb-2 font-heading text-xl font-bold">{plan.name}</div>
+                      <p className="text-sm text-muted-foreground">{plan.description}</p>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col pt-6">
+                      <div className="mb-6">
+                        {isFreePrice ? (
+                          <span className="font-heading text-2xl font-bold">Sob consulta</span>
                         ) : (
-                          <X className="h-4 w-4 shrink-0 text-muted-foreground/50" />
+                          <>
+                            <span className="font-heading text-4xl font-bold">R$ {plan.price}</span>
+                            <span className="text-muted-foreground">{plan.billing}</span>
+                          </>
                         )}
-                        <span className={`text-sm ${!feature.included ? "text-muted-foreground/50" : ""}`}>
-                          {feature.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={plan.href}>
-                    <Button
-                      className="w-full"
-                      variant={plan.popular ? "default" : "outline"}
-                      data-testid={`button-plan-${index}`}
-                    >
-                      {plan.cta}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                      </div>
+                      <ul className="mb-8 flex-1 space-y-3">
+                        {features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-center gap-2">
+                            {feature.included ? (
+                              <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                            ) : (
+                              <X className="h-4 w-4 shrink-0 text-muted-foreground/50" />
+                            )}
+                            <span className={`text-sm ${!feature.included ? "text-muted-foreground/50" : ""}`}>
+                              {feature.name}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link href={plan.ctaHref}>
+                        <Button
+                          className="w-full"
+                          variant={plan.popular ? "default" : "outline"}
+                          data-testid={`button-plan-${index}`}
+                        >
+                          {plan.ctaLabel}
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="py-12 text-center text-muted-foreground">
+              Nenhum plano disponível no momento.
+            </div>
+          )}
         </div>
       </section>
 

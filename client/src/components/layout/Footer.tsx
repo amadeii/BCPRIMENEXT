@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { SiWhatsapp, SiInstagram, SiLinkedin, SiFacebook, SiYoutube } from "react-icons/si";
 import { Mail, MapPin, Phone } from "lucide-react";
+import logoBcprimeNext from "@/assets/logo-bcprimenext.svg";
 
 const services = [
   { name: "Contabilidade Digital", href: "/contabilidade-digital" },
@@ -34,8 +35,8 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center">
               <img 
-                src="https://alloydeliveryimages.s3.sa-east-1.amazonaws.com/licenciados/140/66041ffb43ada8l5fi.svg" 
-                alt="BCPrimeON" 
+                src={logoBcprimeNext}
+                alt="BcprimeNEXT" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -129,7 +130,7 @@ export function Footer() {
         <div className="mt-12 border-t pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} BCPrimeON Contabilidade Digital. Todos os direitos reservados.
+              © {new Date().getFullYear()} BcprimeNEXT — Central de Gestão Empresarial. Todos os direitos reservados.
             </p>
             <div className="flex gap-4">
               <Link href="/privacidade">
