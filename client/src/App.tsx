@@ -16,6 +16,7 @@ import Blog from "@/pages/Blog";
 import BlogPostPage from "@/pages/BlogPost";
 import Contato from "@/pages/Contato";
 import AreaCliente from "@/pages/AreaCliente";
+import DynamicPage from "@/pages/DynamicPage";
 import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminPosts from "@/pages/admin/AdminPosts";
@@ -25,6 +26,11 @@ import AdminTeam from "@/pages/admin/AdminTeam";
 import AdminLeads from "@/pages/admin/AdminLeads";
 import AdminPlans from "@/pages/admin/AdminPlans";
 import AdminPlanForm from "@/pages/admin/AdminPlanForm";
+import AdminRedirects from "@/pages/admin/AdminRedirects";
+import AdminPages from "@/pages/admin/AdminPages";
+import AdminPageEditor from "@/pages/admin/AdminPageEditor";
+import AdminAiSettings from "@/pages/admin/AdminAiSettings";
+import AdminAiChat from "@/pages/admin/AdminAiChat";
 import NotFound from "@/pages/not-found";
 
 function PublicRouter() {
@@ -43,6 +49,7 @@ function PublicRouter() {
         <Route path="/blog/:slug" component={BlogPostPage} />
         <Route path="/contato" component={Contato} />
         <Route path="/area-do-cliente" component={AreaCliente} />
+        <Route path="/p/:slug" component={DynamicPage} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
@@ -64,6 +71,12 @@ function AdminRouter() {
       <Route path="/admin/plans" component={AdminPlans} />
       <Route path="/admin/plans/new" component={AdminPlanForm} />
       <Route path="/admin/plans/:id" component={AdminPlanForm} />
+      <Route path="/admin/redirects" component={AdminRedirects} />
+      <Route path="/admin/pages" component={AdminPages} />
+      <Route path="/admin/pages/new" component={AdminPageEditor} />
+      <Route path="/admin/pages/:id" component={AdminPageEditor} />
+      <Route path="/admin/ai-settings" component={AdminAiSettings} />
+      <Route path="/admin/ai-chat" component={AdminAiChat} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -103,6 +103,73 @@ export const insertPlanSchema = createInsertSchema(plans).omit({
 export type InsertPlan = z.infer<typeof insertPlanSchema>;
 export type Plan = typeof plans.$inferSelect;
 
+export const redirects = pgTable("redirects", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  slug: text("slug").notNull().unique(),
+  destination: text("destination").notNull(),
+  label: text("label").notNull(),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertRedirectSchema = createInsertSchema(redirects).omit({ id: true, createdAt: true });
+export type InsertRedirect = z.infer<typeof insertRedirectSchema>;
+export type Redirect = typeof redirects.$inferSelect;
+
+export const siteContent = pgTable("site_content", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  section: text("section").notNull().unique(),
+  data: text("data").notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertSiteContentSchema = createInsertSchema(siteContent).omit({ id: true, updatedAt: true });
+export type InsertSiteContent = z.infer<typeof insertSiteContentSchema>;
+export type SiteContent = typeof siteContent.$inferSelect;
+
+export const pages = pgTable("pages", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  metaTitle: text("meta_title"),
+  metaDescription: text("meta_description"),
+  published: boolean("published").default(false).notNull(),
+  displayOrder: text("display_order").default("0"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertPageSchema = createInsertSchema(pages).omit({ id: true, createdAt: true, updatedAt: true });
+export type InsertPage = z.infer<typeof insertPageSchema>;
+export type Page = typeof pages.$inferSelect;
+
+export const pageBlocks = pgTable("page_blocks", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  pageId: varchar("page_id").notNull(),
+  type: text("type").notNull(),
+  data: text("data").notNull(),
+  displayOrder: text("display_order").default("0"),
+});
+
+export const insertPageBlockSchema = createInsertSchema(pageBlocks).omit({ id: true });
+export type InsertPageBlock = z.infer<typeof insertPageBlockSchema>;
+export type PageBlock = typeof pageBlocks.$inferSelect;
+
+export const aiSettings = pgTable("ai_settings", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  provider: text("provider").notNull(),
+  model: text("model").notNull(),
+  apiKey: text("api_key"),
+  baseUrl: text("base_url"),
+  active: boolean("active").default(false).notNull(),
+  label: text("label").notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertAiSettingSchema = createInsertSchema(aiSettings).omit({ id: true, updatedAt: true });
+export type InsertAiSetting = z.infer<typeof insertAiSettingSchema>;
+export type AiSetting = typeof aiSettings.$inferSelect;
+
 export const seoKeywords = pgTable("seo_keywords", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   keyword: text("keyword").notNull().unique(),

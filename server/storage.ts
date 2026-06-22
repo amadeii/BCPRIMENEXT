@@ -5,7 +5,13 @@ import {
   type Keyword, type InsertKeyword,
   type TeamMember, type InsertTeamMember,
   type Plan, type InsertPlan,
-  users, leads, blogPosts, seoKeywords, teamMembers, plans
+  type Redirect, type InsertRedirect,
+  type SiteContent, type InsertSiteContent,
+  type Page, type InsertPage,
+  type PageBlock, type InsertPageBlock,
+  type AiSetting, type InsertAiSetting,
+  users, leads, blogPosts, seoKeywords, teamMembers, plans,
+  redirects, siteContent, pages, pageBlocks, aiSettings
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc } from "drizzle-orm";
@@ -43,8 +49,40 @@ export interface IStorage {
   createPlan(plan: InsertPlan): Promise<Plan>;
   updatePlan(id: string, plan: Partial<InsertPlan>): Promise<Plan | undefined>;
   deletePlan(id: string): Promise<void>;
-  
-  getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number; plans: number }>;
+
+  getRedirects(): Promise<Redirect[]>;
+  getRedirect(id: string): Promise<Redirect | undefined>;
+  getRedirectBySlug(slug: string): Promise<Redirect | undefined>;
+  createRedirect(r: InsertRedirect): Promise<Redirect>;
+  updateRedirect(id: string, r: Partial<InsertRedirect>): Promise<Redirect | undefined>;
+  deleteRedirect(id: string): Promise<void>;
+
+  getSiteContent(section: string): Promise<SiteContent | undefined>;
+  getAllSiteContent(): Promise<SiteContent[]>;
+  upsertSiteContent(section: string, data: string): Promise<SiteContent>;
+
+  getPages(): Promise<Page[]>;
+  getPage(id: string): Promise<Page | undefined>;
+  getPageBySlug(slug: string): Promise<Page | undefined>;
+  createPage(page: InsertPage): Promise<Page>;
+  updatePage(id: string, page: Partial<InsertPage>): Promise<Page | undefined>;
+  deletePage(id: string): Promise<void>;
+
+  getPageBlocks(pageId: string): Promise<PageBlock[]>;
+  getPageBlock(id: string): Promise<PageBlock | undefined>;
+  createPageBlock(block: InsertPageBlock): Promise<PageBlock>;
+  updatePageBlock(id: string, block: Partial<InsertPageBlock>): Promise<PageBlock | undefined>;
+  deletePageBlock(id: string): Promise<void>;
+  deletePageBlocks(pageId: string): Promise<void>;
+
+  getAiSettings(): Promise<AiSetting[]>;
+  getAiSetting(id: string): Promise<AiSetting | undefined>;
+  getActiveAiSetting(): Promise<AiSetting | undefined>;
+  upsertAiSetting(setting: InsertAiSetting & { id?: string }): Promise<AiSetting>;
+  deleteAiSetting(id: string): Promise<void>;
+  setActiveAiSetting(id: string): Promise<void>;
+
+  getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number; plans: number; redirects: number; pages: number }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -180,12 +218,159 @@ export class DatabaseStorage implements IStorage {
     await db.delete(plans).where(eq(plans.id, id));
   }
 
-  async getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number; plans: number }> {
+  // Redirects
+  async getRedirects(): Promise<Redirect[]> {
+    return db.select().from(redirects).orderBy(asc(redirects.slug));
+  }
+
+  async getRedirect(id: string): Promise<Redirect | undefined> {
+    const [r] = await db.select().from(redirects).where(eq(redirects.id, id));
+    return r;
+  }
+
+  async getRedirectBySlug(slug: string): Promise<Redirect | undefined> {
+    const [r] = await db.select().from(redirects).where(eq(redirects.slug, slug));
+    return r;
+  }
+
+  async createRedirect(r: InsertRedirect): Promise<Redirect> {
+    const [newR] = await db.insert(redirects).values(r).returning();
+    return newR;
+  }
+
+  async updateRedirect(id: string, r: Partial<InsertRedirect>): Promise<Redirect | undefined> {
+    const [updated] = await db.update(redirects).set(r).where(eq(redirects.id, id)).returning();
+    return updated;
+  }
+
+  async deleteRedirect(id: string): Promise<void> {
+    await db.delete(redirects).where(eq(redirects.id, id));
+  }
+
+  // Site Content
+  async getSiteContent(section: string): Promise<SiteContent | undefined> {
+    const [sc] = await db.select().from(siteContent).where(eq(siteContent.section, section));
+    return sc;
+  }
+
+  async getAllSiteContent(): Promise<SiteContent[]> {
+    return db.select().from(siteContent);
+  }
+
+  async upsertSiteContent(section: string, data: string): Promise<SiteContent> {
+    const existing = await this.getSiteContent(section);
+    if (existing) {
+      const [updated] = await db
+        .update(siteContent)
+        .set({ data, updatedAt: new Date() })
+        .where(eq(siteContent.section, section))
+        .returning();
+      return updated;
+    }
+    const [created] = await db.insert(siteContent).values({ section, data }).returning();
+    return created;
+  }
+
+  // Pages
+  async getPages(): Promise<Page[]> {
+    return db.select().from(pages).orderBy(asc(pages.displayOrder));
+  }
+
+  async getPage(id: string): Promise<Page | undefined> {
+    const [page] = await db.select().from(pages).where(eq(pages.id, id));
+    return page;
+  }
+
+  async getPageBySlug(slug: string): Promise<Page | undefined> {
+    const [page] = await db.select().from(pages).where(eq(pages.slug, slug));
+    return page;
+  }
+
+  async createPage(page: InsertPage): Promise<Page> {
+    const [newPage] = await db.insert(pages).values(page).returning();
+    return newPage;
+  }
+
+  async updatePage(id: string, page: Partial<InsertPage>): Promise<Page | undefined> {
+    const [updated] = await db.update(pages).set({ ...page, updatedAt: new Date() }).where(eq(pages.id, id)).returning();
+    return updated;
+  }
+
+  async deletePage(id: string): Promise<void> {
+    await db.delete(pageBlocks).where(eq(pageBlocks.pageId, id));
+    await db.delete(pages).where(eq(pages.id, id));
+  }
+
+  // Page Blocks
+  async getPageBlocks(pageId: string): Promise<PageBlock[]> {
+    return db.select().from(pageBlocks).where(eq(pageBlocks.pageId, pageId)).orderBy(asc(pageBlocks.displayOrder));
+  }
+
+  async getPageBlock(id: string): Promise<PageBlock | undefined> {
+    const [block] = await db.select().from(pageBlocks).where(eq(pageBlocks.id, id));
+    return block;
+  }
+
+  async createPageBlock(block: InsertPageBlock): Promise<PageBlock> {
+    const [newBlock] = await db.insert(pageBlocks).values(block).returning();
+    return newBlock;
+  }
+
+  async updatePageBlock(id: string, block: Partial<InsertPageBlock>): Promise<PageBlock | undefined> {
+    const [updated] = await db.update(pageBlocks).set(block).where(eq(pageBlocks.id, id)).returning();
+    return updated;
+  }
+
+  async deletePageBlock(id: string): Promise<void> {
+    await db.delete(pageBlocks).where(eq(pageBlocks.id, id));
+  }
+
+  async deletePageBlocks(pageId: string): Promise<void> {
+    await db.delete(pageBlocks).where(eq(pageBlocks.pageId, pageId));
+  }
+
+  // AI Settings
+  async getAiSettings(): Promise<AiSetting[]> {
+    return db.select().from(aiSettings);
+  }
+
+  async getAiSetting(id: string): Promise<AiSetting | undefined> {
+    const [s] = await db.select().from(aiSettings).where(eq(aiSettings.id, id));
+    return s;
+  }
+
+  async getActiveAiSetting(): Promise<AiSetting | undefined> {
+    const [s] = await db.select().from(aiSettings).where(eq(aiSettings.active, true));
+    return s;
+  }
+
+  async upsertAiSetting(setting: InsertAiSetting & { id?: string }): Promise<AiSetting> {
+    if (setting.id) {
+      const { id, ...rest } = setting;
+      const [updated] = await db.update(aiSettings).set({ ...rest, updatedAt: new Date() }).where(eq(aiSettings.id, id)).returning();
+      return updated;
+    }
+    const [created] = await db.insert(aiSettings).values(setting).returning();
+    return created;
+  }
+
+  async deleteAiSetting(id: string): Promise<void> {
+    await db.delete(aiSettings).where(eq(aiSettings.id, id));
+  }
+
+  async setActiveAiSetting(id: string): Promise<void> {
+    await db.update(aiSettings).set({ active: false });
+    await db.update(aiSettings).set({ active: true }).where(eq(aiSettings.id, id));
+  }
+
+  async getStats(): Promise<{ posts: number; keywords: number; leads: number; team: number; plans: number; redirects: number; pages: number }> {
     const postsResult = await db.select().from(blogPosts);
     const keywordsResult = await db.select().from(seoKeywords);
     const leadsResult = await db.select().from(leads);
     const teamResult = await db.select().from(teamMembers);
     const plansResult = await db.select().from(plans);
+    const redirectsResult = await db.select().from(redirects);
+    const pagesResult = await db.select().from(pages);
     
     return {
       posts: postsResult.length,
@@ -193,6 +378,8 @@ export class DatabaseStorage implements IStorage {
       leads: leadsResult.length,
       team: teamResult.length,
       plans: plansResult.length,
+      redirects: redirectsResult.length,
+      pages: pagesResult.length,
     };
   }
 }

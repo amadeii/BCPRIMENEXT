@@ -66,9 +66,8 @@ export default function AdminLogin() {
             <Lock className="h-8 w-8 text-primary" />
           </div>
           <div className="flex items-center justify-center gap-1">
-            <span className="font-heading text-2xl font-extrabold text-primary">BC</span>
-            <span className="font-heading text-2xl font-extrabold">Prime</span>
-            <span className="font-heading text-2xl font-extrabold text-primary">ON</span>
+            <span className="font-heading text-2xl font-extrabold">bcprime</span>
+            <span className="ml-1 rounded-full bg-primary px-2 py-0.5 text-sm font-bold text-white">NEXT</span>
           </div>
           <p className="text-sm text-muted-foreground">Painel Administrativo</p>
         </CardHeader>
