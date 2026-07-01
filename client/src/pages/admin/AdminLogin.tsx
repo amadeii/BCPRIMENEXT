@@ -40,7 +40,7 @@ export default function AdminLogin() {
   const onSubmit = async (data: LoginForm) => {
     setIsLoading(true);
     
-    if (data.username === "admin" && data.password === "bcprime2024") {
+    if (data.username === "admin" && data.password === "admin123") {
       localStorage.setItem("admin_auth", "true");
       toast({
         title: "Login realizado!",
