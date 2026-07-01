@@ -24,3 +24,9 @@ id = "SEhDEcHsw9zBivgax7Uya"
 uri = "file://bcprimenext-backup-final.tar.gz"
 type = "unspecified"
 title = "BCPrimeNEXT — Backup completo (versão final)"
+
+[[outputs]]
+id = "FqmnGVwE9MKkQV5EvjCux"
+uri = "file://bcprimenext-codigo.zip"
+type = "unspecified"
+title = "BCPrimeNEXT — Código do projeto (.zip)"
