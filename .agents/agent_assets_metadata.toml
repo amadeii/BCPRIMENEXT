@@ -18,3 +18,9 @@ id = "WDe2XUTSPbi7RCN3cYsSH"
 uri = "file://BCPrimeNEXT-Documentacao-Tecnica.md"
 type = "text"
 title = "BCPrimeNEXT — Documentação Técnica (Funcionalidades + Servidor)"
+
+[[outputs]]
+id = "SEhDEcHsw9zBivgax7Uya"
+uri = "file://bcprimenext-backup-final.tar.gz"
+type = "unspecified"
+title = "BCPrimeNEXT — Backup completo (versão final)"
