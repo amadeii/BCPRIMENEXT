@@ -249,24 +249,26 @@
   }
 
   .bcprime-next-switch {
-    --switch-w: 112px;
-    --switch-h: 38px;
+    --switch-w: 116px;
+    --switch-h: 40px;
     --pad: 3px;
-    --knob-w: 66px;
-    --travel: 40px;
+    --knob-w: 68px;
+    --travel: 42px;
+    --switch-shift: 4px;
     position: relative;
     display: inline-flex;
     align-items: center;
     width: var(--switch-w);
     height: var(--switch-h);
     overflow: hidden;
-    border: 1px solid rgba(190, 238, 170, 0.65);
+    border: 1px solid rgba(178, 255, 128, 0.78);
     border-radius: 999px;
-    background: linear-gradient(135deg, #76c94e 0%, #3f9e2f 48%, #2e7d32 100%);
+    background: linear-gradient(135deg, #92f95a 0%, #43d83d 46%, #19a84a 100%);
     box-shadow:
-      0 12px 24px rgba(46, 125, 50, 0.24),
-      inset 0 1px 0 rgba(255, 255, 255, 0.34);
-    transform: translateY(1px);
+      0 12px 26px rgba(67, 216, 61, 0.28),
+      0 0 18px rgba(146, 249, 90, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    transform: translateY(var(--switch-shift));
   }
 
   .bcprime-next-switch::after {
@@ -290,10 +292,11 @@
     width: var(--knob-w);
     height: calc(var(--switch-h) - (var(--pad) * 2));
     border-radius: 999px;
-    background: linear-gradient(135deg, #ffffff 0%, #f2fbef 100%);
-    color: #2e7d32;
+    border: 1px solid rgba(37, 185, 69, 0.72);
+    background: linear-gradient(135deg, #ffffff 0%, #f7fff5 100%);
+    color: #188d39;
     box-shadow:
-      0 8px 16px rgba(15, 23, 42, 0.18),
+      0 8px 16px rgba(24, 141, 57, 0.18),
       inset 0 1px 0 rgba(255, 255, 255, 0.95);
     animation: bcprimeNextSlide 4.8s ease-in-out infinite;
   }
@@ -308,7 +311,7 @@
     letter-spacing: 0.05em;
     line-height: 1;
     text-transform: uppercase;
-    text-shadow: 0 1px 8px rgba(46, 125, 50, 0.08);
+    text-shadow: 0 1px 8px rgba(24, 141, 57, 0.08);
   }
 
   @keyframes bcprimeNextSlide {
@@ -352,10 +355,11 @@
     }
 
     .bcprime-next-switch {
-      --switch-w: 98px;
-      --switch-h: 30px;
-      --knob-w: 54px;
+      --switch-w: 100px;
+      --switch-h: 32px;
+      --knob-w: 56px;
       --travel: 38px;
+      --switch-shift: 3px;
     }
   }
 }
