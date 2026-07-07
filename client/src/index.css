@@ -221,7 +221,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     min-width: max-content;
     line-height: 1;
     white-space: nowrap;
@@ -230,7 +230,7 @@
   .bcprime-brand-word {
     display: inline-block;
     font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 300;
     letter-spacing: 0;
     line-height: 0.86;
@@ -249,11 +249,11 @@
   }
 
   .bcprime-next-switch {
-    --switch-w: 88px;
-    --switch-h: 30px;
+    --switch-w: 112px;
+    --switch-h: 38px;
     --pad: 3px;
-    --knob-w: 50px;
-    --travel: 32px;
+    --knob-w: 66px;
+    --travel: 40px;
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -264,7 +264,7 @@
     border-radius: 999px;
     background: linear-gradient(135deg, #76c94e 0%, #3f9e2f 48%, #2e7d32 100%);
     box-shadow:
-      0 8px 18px rgba(46, 125, 50, 0.18),
+      0 12px 24px rgba(46, 125, 50, 0.24),
       inset 0 1px 0 rgba(255, 255, 255, 0.34);
   }
 
@@ -285,14 +285,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: flex-end;
-    min-width: 38px;
+    min-width: 28px;
     height: 100%;
     color: rgba(255, 255, 255, 0.86);
     font-family: "Montserrat", "Poppins", "Segoe UI", Arial, sans-serif;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 900;
     letter-spacing: 0.07em;
-    opacity: 0.58;
+    opacity: 0.74;
     pointer-events: none;
     text-transform: uppercase;
     animation: bcprimeNextAwake 4.8s ease-in-out infinite;
@@ -312,7 +312,7 @@
     background: linear-gradient(135deg, #ffffff 0%, #f2fbef 100%);
     color: #2e7d32;
     box-shadow:
-      0 6px 12px rgba(15, 23, 42, 0.16),
+      0 8px 16px rgba(15, 23, 42, 0.18),
       inset 0 1px 0 rgba(255, 255, 255, 0.95);
     animation: bcprimeNextSlide 4.8s ease-in-out infinite;
   }
@@ -322,13 +322,12 @@
     align-items: center;
     justify-content: center;
     font-family: "Montserrat", "Poppins", "Segoe UI", Arial, sans-serif;
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 900;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     line-height: 1;
     text-transform: uppercase;
     text-shadow: 0 1px 8px rgba(46, 125, 50, 0.08);
-    animation: bcprimeNextText 4.8s ease-in-out infinite;
   }
 
   @keyframes bcprimeNextSlide {
@@ -365,37 +364,20 @@
   @keyframes bcprimeNextAwake {
     0%, 36% {
       color: #ffffff;
-      opacity: 0.58;
+      opacity: 0.74;
       text-shadow: none;
     }
 
     50%, 86% {
       color: #ffffff;
-      opacity: 0.14;
+      opacity: 0.32;
       text-shadow: none;
     }
 
     100% {
       color: #ffffff;
-      opacity: 0.58;
+      opacity: 0.74;
       text-shadow: none;
-    }
-  }
-
-  @keyframes bcprimeNextText {
-    0%, 36% {
-      opacity: 0;
-      transform: translateX(8px);
-    }
-
-    50%, 86% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    100% {
-      opacity: 0;
-      transform: translateX(8px);
     }
   }
 
@@ -405,14 +387,14 @@
     }
 
     .bcprime-brand-word {
-      font-size: 38px;
+      font-size: 40px;
     }
 
     .bcprime-next-switch {
-      --switch-w: 76px;
-      --switch-h: 26px;
-      --knob-w: 43px;
-      --travel: 27px;
+      --switch-w: 98px;
+      --switch-h: 30px;
+      --knob-w: 54px;
+      --travel: 38px;
     }
   }
 }
