@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { SiWhatsapp, SiInstagram, SiLinkedin, SiFacebook, SiYoutube } from "react-icons/si";
 import { Mail, MapPin, Phone } from "lucide-react";
-import logoBcprimeNext from "@/assets/logo-bcprimenext.svg";
+import { BrandLogo } from "@/components/BrandLogo";
 
 const services = [
   { name: "Contabilidade Digital", href: "/contabilidade-digital" },
@@ -33,12 +33,8 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center">
-              <img 
-                src={logoBcprimeNext}
-                alt="BcprimeNEXT" 
-                className="h-10 w-auto"
-              />
+            <Link href="/" className="flex items-center justify-center md:justify-start">
+              <BrandLogo />
             </Link>
             <p className="text-sm text-muted-foreground">
               Contabilidade digital que simplifica a gestão do seu negócio. Somos especialistas em transformar a burocracia em resultados.

@@ -215,6 +215,150 @@
   }
 }
 
+@layer components {
+  .bcprime-brand-mark {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    min-width: max-content;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .bcprime-brand-word {
+    display: inline-block;
+    font-family: "Montserrat", "Poppins", "Segoe UI", Arial, sans-serif;
+    font-size: clamp(3.25rem, 5.2vw, 4rem);
+    font-weight: 300;
+    letter-spacing: -0.085em;
+    line-height: 0.85;
+    text-transform: lowercase;
+    text-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  }
+
+  .bcprime-word-bc {
+    color: #6fa85f;
+    font-weight: 300;
+  }
+
+  .bcprime-word-prime {
+    color: #34413d;
+    font-weight: 300;
+  }
+
+  .bcprime-next-switch {
+    --switch-w: 10.25rem;
+    --switch-h: 3.5rem;
+    --pad: 0.3rem;
+    --knob-w: 5.75rem;
+    --travel: calc(var(--switch-w) - var(--knob-w) - (var(--pad) * 2));
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: var(--switch-w);
+    height: var(--switch-h);
+    overflow: hidden;
+    border: 1px solid rgba(190, 238, 170, 0.68);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #76c94e 0%, #50b238 48%, #2e7d32 100%);
+    box-shadow:
+      0 18px 36px rgba(46, 125, 50, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  }
+
+  .bcprime-next-switch::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    border-radius: inherit;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0.18)),
+      radial-gradient(circle at 43% 50%, rgba(255, 255, 255, 0.14), transparent 34%);
+    animation: bcprimeNextSheen 5.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .bcprime-next-knob {
+    position: absolute;
+    top: var(--pad);
+    left: var(--pad);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--knob-w);
+    height: calc(var(--switch-h) - (var(--pad) * 2));
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffffff 0%, #f2fbef 100%);
+    color: #2e7d32;
+    box-shadow:
+      0 12px 22px rgba(15, 23, 42, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    animation: bcprimeNextSlide 5.4s ease-in-out infinite;
+  }
+
+  .bcprime-next-knob span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", "Poppins", "Segoe UI", Arial, sans-serif;
+    font-size: 0.86rem;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  @keyframes bcprimeNextSlide {
+    0%, 32% {
+      transform: translateX(0);
+    }
+
+    48%, 84% {
+      transform: translateX(var(--travel));
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bcprimeNextSheen {
+    0%, 34% {
+      opacity: 0.38;
+      transform: translateX(-30%);
+    }
+
+    52%, 84% {
+      opacity: 0.82;
+      transform: translateX(18%);
+    }
+
+    100% {
+      opacity: 0.38;
+      transform: translateX(-30%);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .bcprime-brand-mark {
+      gap: 0.82rem;
+    }
+
+    .bcprime-brand-word {
+      font-size: 3rem;
+    }
+
+    .bcprime-next-switch {
+      --switch-w: 10rem;
+      --switch-h: 3.35rem;
+      --knob-w: 5.65rem;
+    }
+  }
+}
+
 /**
  * Using the elevate system.
  * Automatic contrast adjustment.

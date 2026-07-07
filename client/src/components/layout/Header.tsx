@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import logoBcprimeNext from "@/assets/logo-bcprimenext.svg";
+import { BrandLogo } from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -55,13 +55,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
+      <div className="container mx-auto flex min-h-[142px] items-center justify-between px-4 py-4 lg:min-h-[150px] lg:px-8">
         <Link href="/" className="flex items-center">
-          <img 
-            src={logoBcprimeNext}
-            alt="BcprimeNEXT" 
-            className="h-10 w-auto"
-          />
+          <BrandLogo />
         </Link>
 
         <NavigationMenu className="hidden lg:flex">
