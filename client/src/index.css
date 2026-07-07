@@ -266,6 +266,7 @@
     box-shadow:
       0 12px 24px rgba(46, 125, 50, 0.24),
       inset 0 1px 0 rgba(255, 255, 255, 0.34);
+    transform: translateY(1px);
   }
 
   .bcprime-next-switch::after {
@@ -276,26 +277,6 @@
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 44%, rgba(255, 255, 255, 0.2));
     animation: bcprimeNextSheen 4.8s ease-in-out infinite;
     pointer-events: none;
-  }
-
-  .bcprime-next-label {
-    position: absolute;
-    right: 8px;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    min-width: 28px;
-    height: 100%;
-    color: rgba(255, 255, 255, 0.86);
-    font-family: "Montserrat", "Poppins", "Segoe UI", Arial, sans-serif;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.07em;
-    opacity: 0.74;
-    pointer-events: none;
-    text-transform: uppercase;
-    animation: bcprimeNextAwake 4.8s ease-in-out infinite;
   }
 
   .bcprime-next-knob {
@@ -358,26 +339,6 @@
     100% {
       opacity: 0.2;
       transform: translateX(-80%);
-    }
-  }
-
-  @keyframes bcprimeNextAwake {
-    0%, 36% {
-      color: #ffffff;
-      opacity: 0.74;
-      text-shadow: none;
-    }
-
-    50%, 86% {
-      color: #ffffff;
-      opacity: 0.32;
-      text-shadow: none;
-    }
-
-    100% {
-      color: #ffffff;
-      opacity: 0.74;
-      text-shadow: none;
     }
   }
 

@@ -13,7 +13,6 @@ export function BrandLogo({ className }: BrandLogoProps) {
       </span>
 
       <span className="bcprime-next-switch" aria-hidden="true">
-        <span className="bcprime-next-label">NEXT</span>
         <span className="bcprime-next-knob">
           <span>NEXT &rsaquo;</span>
         </span>
